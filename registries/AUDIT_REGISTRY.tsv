@@ -13,3 +13,5 @@ A010	2026-11-26	P1A.03B	v1.1 namespace-safe parser and stratified pilot prepared
 A011	2026-11-26	P1A.03B	v1.1 cluster plan: 2370 HTML IDs; 2363 taxon union; 1520 unique human; 0 missing human; 126 multitaxon; 7 unindexed	PLAN_PASS_WITH_UNINDEXED_REVIEW
 A012	2026-11-26	P1A.03B	Seven unindexed model JSONs retrieved and parsed; all taxon null; all production; six fungal and one host-microbiome title contexts; 45 activity entries	RETRIEVAL_PASS_SCOPE_REVIEW_PENDING
 A013	2026-11-27	P1A.03B	User reported v1.1 pilot 10/10; 5 hexadecimal and 5 Reactome IDs; 81 activities; 104 molecules; 229 objects; 10 provenances; 275100 bytes; full transfer pending	PILOT_ACQUISITION_PASS
+A014	2026-11-27	P1A.03C	User reported 1520/1520 human-indexed models; 23434222 bytes; 7385 activity entries; 32 empty molecules lists; 10 nonhuman primary taxa	FULL_ACQUISITION_PASS
+A015	2026-11-27	P1A.04A	Read-only local rehash and schema reconnaissance prepared; actual execution pending	PENDING
