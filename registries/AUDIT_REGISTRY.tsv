@@ -7,3 +7,6 @@ A004	2026-11-26	P1A.02	Cluster preflight at 6e655a3: 20/20 HTTP 200; version 98;
 A005	2026-11-26	P1A.03	Core acquisition script and offline self-test fixtures prepared; cluster execution pending	PENDING
 A006	2026-11-26	P1A.03	User reported 19/19 resources acquired; 992633336 bytes; version 98; self-test PASS; hashes recorded separately	CORE_ACQUISITION_PASS
 A007	2026-11-26	P1A.03B	Taxon index human list length 1520; 67 taxon keys; plan and individual model acquisition pending	PENDING
+A008	2026-11-26	P1A.03B	v1 plan failed on nonhexadecimal human model identifiers before transfer	FAIL_IDENTIFIER_ASSUMPTION
+A009	2026-11-26	P1A.03B	Read-only cluster audit: 2370 unique HTML IDs; 1520 unique human IDs all present; 292 IDs omitted by original regex	INDEX_RECONCILIATION_PASS
+A010	2026-11-26	P1A.03B	v1.1 namespace-safe parser and stratified pilot prepared; execution pending	PENDING

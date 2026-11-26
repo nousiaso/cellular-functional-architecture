@@ -6,6 +6,7 @@ import re
 import subprocess
 from html.parser import HTMLParser
 from pathlib import Path
+from urllib.parse import urlsplit
 import csv
 
 root = Path(__file__).resolve().parents[2]
@@ -34,11 +35,13 @@ class Links(HTMLParser):
     def handle_starttag(self, tag, attrs):
         if tag == "a":
             href = dict(attrs).get("href", "")
-            filename = href.rsplit("/", 1)[-1]
-            if re.fullmatch(r"[0-9a-f]+\.json", filename):
+            filename = urlsplit(href).path.rsplit("/", 1)[-1]
+            if filename.endswith(".json"):
+                if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]*\.json", filename):
+                    raise ValueError(f"Unexpected JSON filename {filename!r}")
                 self.links.add(filename)
 
-print("CFA_P1A02_SOURCE_PREFLIGHT_V1", flush=True)
+print("CFA_P1A02_SOURCE_PREFLIGHT_V1_1", flush=True)
 print("No bulk transfers; HEAD results are accessibility checks, not integrity certification.")
 version_url = "https://reactome.org/ContentService/data/database/version"
 p = curl(version_url, limit=10000)

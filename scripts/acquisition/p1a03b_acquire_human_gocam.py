@@ -19,7 +19,21 @@ from p1a03_acquire_core import ROOT, RAW, sha256, utc, curl_base, atomic_json
 BASE = "https://release.geneontology.org/2026-08-05/go-cams/json/"
 HUMAN = "NCBITaxon:9606"
 DIRECTORY = RAW / "go_2026-08-05" / "human_indexed_models"
-ID = re.compile(r"[0-9a-f]+")
+# Safety constraint for filenames/URLs, not a biological namespace filter.
+ID = re.compile(r"[A-Za-z0-9][A-Za-z0-9_-]*")
+HEX = re.compile(r"[0-9a-f]+")
+REACTOME = re.compile(r"R-HSA-[0-9]+")
+
+def namespace(ident):
+    if HEX.fullmatch(ident):
+        return "hexadecimal"
+    if REACTOME.fullmatch(ident):
+        return "Reactome_HSA"
+    if ident.startswith("MGI_"):
+        return "MGI"
+    if ident.startswith("YeastPathways_"):
+        return "YeastPathways"
+    return "other_safe_identifier"
 EXPECTED = ROOT / "manifests/P1A03_CORE_REPORTED_SHA256.tsv"
 
 class Index(HTMLParser):
@@ -30,8 +44,11 @@ class Index(HTMLParser):
         if tag!="a":
             return
         name=Path(urlsplit(dict(attrs).get("href","")).path).name
-        if name.endswith(".json") and ID.fullmatch(name[:-5]):
-            self.ids.add(name[:-5])
+        if name.endswith(".json"):
+            ident = name[:-5]
+            if not ID.fullmatch(ident):
+                raise ValueError(f"Unexpected JSON filename: {name!r}")
+            self.ids.add(ident)
 
 def load_indices():
     with EXPECTED.open() as f:
@@ -62,19 +79,23 @@ def load_indices():
           "HUMAN_NOT_IN_HTML",len(missing))
     print("HTML_NOT_IN_TAXON_INDEX",len(idx.ids-set(memberships)),
           "TAXON_INDEX_NOT_IN_HTML",len(set(memberships)-idx.ids))
+    print("HTML_IDENTIFIER_NAMESPACES",dict(Counter(namespace(i) for i in idx.ids)))
+    print("HUMAN_IDENTIFIER_NAMESPACES",dict(Counter(namespace(i) for i in ids)))
     print("HUMAN_INDEX_MULTITAXON",sum(len(memberships[i])>1 for i in ids))
     print("HUMAN_INDEX_ADDITIONAL_TAXA",dict(Counter(k for i in ids for k in memberships[i] if k!=HUMAN)))
-    if len(raw)!=1520 or len(idx.ids)!=2078 or len(tax)!=67 or missing or len(raw)!=len(ids):
+    if len(raw)!=1520 or len(idx.ids)!=2370 or len(tax)!=67 or missing or len(raw)!=len(ids):
         raise RuntimeError("Unexpected human index cardinality or mismatch; review before download")
     return ids,memberships
 
 def inspect(p, ident):
     obj=json.loads(p.read_text(encoding="utf-8"))
     if not isinstance(obj,dict) or obj.get("id")!="gomodel:"+ident:
-        raise ValueError(f"Model identity mismatch {ident}")
+        actual = obj.get("id") if isinstance(obj,dict) else type(obj).__name__
+        raise ValueError(f"Model identity mismatch {ident}: internal ID={actual!r}")
     def count(k):
         return len(obj[k]) if isinstance(obj.get(k),list) else None
-    return {"model_id":ident,"model_taxon":obj.get("taxon"),
+    return {"model_id":ident,"identifier_namespace":namespace(ident),
+            "model_taxon":obj.get("taxon"),
             "model_status":obj.get("status"),"date_modified":obj.get("date_modified"),
             "top_level_keys":sorted(obj),
             **{k+"_n":count(k) for k in ("activities","molecules","objects","provenances")},
@@ -116,6 +137,7 @@ def acquire(ident, memberships):
 
 def summarize(receipts):
     models=[r["model"] for r in receipts]
+    print("MODEL_IDENTIFIER_NAMESPACES",dict(Counter(m["identifier_namespace"] for m in models)))
     print("MODEL_TAXA",dict(Counter(json.dumps(m["model_taxon"],sort_keys=True) for m in models)))
     print("MODEL_STATUS",dict(Counter(json.dumps(m["model_status"],sort_keys=True) for m in models)))
     print("MODEL_NONEXACT_HUMAN_TAXON",sum(not m["taxon_exact_human"] for m in models))
@@ -130,8 +152,22 @@ def summarize(receipts):
 
 def self_test():
     idx=Index()
-    idx.feed('<a href="abc123.json">model</a><a href="index.html">index</a>')
-    assert idx.ids=={"abc123"}
+    names={"abc123","R-HSA-1237112","MGI_MGI_107676","YeastPathways_ARGSPECAT-PWY"}
+    idx.feed("".join(f'<a href="{n}.json">model</a>' for n in sorted(names)))
+    idx.feed('<a href="index.html">index</a>')
+    assert idx.ids==names
+    assert namespace("R-HSA-1237112")=="Reactome_HSA"
+    assert not ID.fullmatch("../bad")
+    assert not ID.fullmatch("a/b")
+    assert not ID.fullmatch("a%2fb")
+    assert not ID.fullmatch("a b")
+    try:
+        Index().feed('<a href="bad%20id.json">model</a>')
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("unsafe filename accepted")
+    assert len(pilot_ids(["abc123","def456","R-HSA-1237112"]))==3
     with tempfile.TemporaryDirectory() as d:
         p=Path(d)/"test.json"
         p.write_text(json.dumps({"id":"gomodel:abc123","taxon":HUMAN,"activities":[{}]}))
@@ -143,21 +179,33 @@ def self_test():
             pass
         else:
             raise AssertionError("ID mismatch not detected")
-    print("SELF_TEST_PASS (index and model identity fixtures only)")
+        p.write_text(json.dumps({"id":"gomodel:R-HSA-1237112","taxon":HUMAN,"activities":[]}))
+        assert inspect(p,"R-HSA-1237112")["identifier_namespace"]=="Reactome_HSA"
+    print("SELF_TEST_PASS (namespace, filename safety and model identity fixtures only)")
+
+def pilot_ids(ids):
+    # Cover each observed human identifier namespace, rather than only the
+    # lexicographically first models. At most five per namespace.
+    groups=defaultdict(list)
+    for i in ids:
+        groups[namespace(i)].append(i)
+    return sorted(i for group in groups.values() for i in sorted(group)[:5])
 
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--execute",action="store_true")
-    ap.add_argument("--pilot",action="store_true",help="first ten sorted IDs only")
+    ap.add_argument("--pilot",action="store_true",help="up to five sorted IDs per human identifier namespace")
     ap.add_argument("--self-test",action="store_true")
     args=ap.parse_args()
     if args.self_test:
         self_test()
         return
     ids,memberships=load_indices()
-    selected=ids[:10] if args.pilot else ids
-    print("CFA_P1A03B_HUMAN_INDEXED_GO_CAM_V1")
+    selected=pilot_ids(ids) if args.pilot else ids
+    print("CFA_P1A03B_HUMAN_INDEXED_GO_CAM_V1_1")
     print("MODE","EXECUTE" if args.execute else "PLAN_ONLY","SELECTED",len(selected))
+    if args.pilot:
+        print("PILOT_IDS", selected)
     if not args.execute:
         return
     DIRECTORY.mkdir(parents=True,exist_ok=True)
