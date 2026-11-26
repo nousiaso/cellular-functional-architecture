@@ -1,0 +1,8 @@
+id	date	stage	decision	rationale	status
+D001	2026-11-26	All	Restrict biological scope to macrophages, fibroblasts and endothelial cells	User-selected scope	ACCEPTED
+D002	2026-11-26	1	Common human molecular architecture	Avoid lineage-expression conditioning	PROPOSED
+D003	2026-11-26	1	Reactome and GO-CAM primary sources	Typed mechanistic evidence	PROPOSED
+D004	2026-11-26	1	Preserve state, compartment and molecular roles	Prevent false equivalence	PROPOSED
+D005	2026-11-26	1	Separate discovery from expression and perturbation validation	Avoid cross-view leakage	PROPOSED
+D006	2026-11-26	1	Model reactions/activities before gene aggregation	Preserve complementary mechanisms	PROPOSED
+D007	2026-11-26	1	Defer algorithm and numerical thresholds	Require source and graph diagnostics	PROPOSED

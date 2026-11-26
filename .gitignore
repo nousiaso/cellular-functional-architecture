@@ -1,0 +1,12 @@
+/data/
+/results/
+/logs/
+/.venv/
+/.conda/
+.env
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+*.pem
+*.key

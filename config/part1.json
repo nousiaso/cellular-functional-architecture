@@ -1,0 +1,12 @@
+{
+  "protocol_version": "0.1.0",
+  "status": "PROPOSED",
+  "species_taxon": 9606,
+  "biological_scope": ["macrophages", "fibroblasts", "endothelial cells"],
+  "primary_sources_proposed": ["Reactome", "GO-CAM"],
+  "source_releases": null,
+  "graph_model": null,
+  "null_model": null,
+  "random_seed": null,
+  "acceptance_thresholds": null
+}

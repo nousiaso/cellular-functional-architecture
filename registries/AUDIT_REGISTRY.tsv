@@ -1,0 +1,3 @@
+id	date	stage	evidence	status
+A000	2026-11-26	P1A.00	User terminal output: empty project folder; Git 2.43.7; Python 3.12.7; curl unzip sha256sum available; shared filesystem mounted; individual quota not reported	PARTIAL_PASS
+A001	2026-11-26	P1A.01	Protocol proposal prepared; review pending	PENDING

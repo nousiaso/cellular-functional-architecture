@@ -1,0 +1,9 @@
+id	stage	limitation	mitigation	status
+L001	P1A	Individual storage quota unknown	Verify quota before large downloads	OPEN
+L002	1	Curated database incompleteness and bias	Coverage and evidence audits; no absence inference	OPEN
+L003	1	Shared literature across sources	Track provenance and cross-source overlap	OPEN
+L004	1	Projection induces dependent edges	Native incidence nulls and evidence-block splits	OPEN
+L005	1	Graph connectivity does not establish physiological task performance	Independent validation in Part 4	OPEN
+L006	1	Historical annotation leakage into validation	Version audit; distinguish retrospective and prospective evidence	OPEN
+L007	1	Unknown reaction constraints and stoichiometry	Retain missingness; no flux claims	OPEN
+L008	1	Historical and current source schemas unverified locally	Inspect actual downloads before parser design	OPEN

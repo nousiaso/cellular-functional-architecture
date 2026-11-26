@@ -1,0 +1,1 @@
+Planned fixtures: compartment mismatch; protein state mismatch; reversible reaction; required complex versus alternatives; missing stoichiometry; currency metabolite; signed regulation; duplicated evidence; native-to-projected edge provenance. No tests implemented yet.
