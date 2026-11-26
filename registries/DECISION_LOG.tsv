@@ -7,3 +7,4 @@ D005	2026-11-26	1	Separate discovery from expression and perturbation validation
 D006	2026-11-26	1	Model reactions/activities before gene aggregation	Preserve complementary mechanisms	PROPOSED
 D007	2026-11-26	1	Defer algorithm and numerical thresholds	Require source and graph diagnostics	PROPOSED
 D008	2026-11-26	P1A.03	Acquire 19 core sources; defer full archive and individual GO-CAM models	All endpoints accessible; inspect taxon index before model selection; minimize redundant transfers	PROPOSED
+D009	2026-11-26	P1A.03B	Acquire verified human-indexed GO-CAM candidate models before biological inclusion filters	Retain mixed contexts and model statuses for subsequent provenance audit	PROPOSED

@@ -5,3 +5,5 @@ A002	2026-11-26	P1A.00	User reported clean checkout at 8ae40ea; remote head inde
 A003	2026-11-26	P1A.02	Official release listings reviewed; read-only cluster source preflight prepared; actual endpoints and source bytes not certified	PENDING
 A004	2026-11-26	P1A.02	Cluster preflight at 6e655a3: 20/20 HTTP 200; version 98; 2078 GO-CAM links; 3/3 pilots parsed; mixed taxa	ACCESSIBILITY_PASS
 A005	2026-11-26	P1A.03	Core acquisition script and offline self-test fixtures prepared; cluster execution pending	PENDING
+A006	2026-11-26	P1A.03	User reported 19/19 resources acquired; 992633336 bytes; version 98; self-test PASS; hashes recorded separately	CORE_ACQUISITION_PASS
+A007	2026-11-26	P1A.03B	Taxon index human list length 1520; 67 taxon keys; plan and individual model acquisition pending	PENDING
