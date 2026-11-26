@@ -27,3 +27,5 @@ A024	2026-11-27	P1A.04E	User reported RO 15/15 and ECO 30/30 active; GO 2951 act
 A025	2026-11-27	P1A.04F	Source-scoped typed incidence construction prepared; execution pending	PENDING
 A026	2026-11-27	P1A.04F	User reported typed layer PASS in 37.96 s; 16187 BP events; 441156 BP incidence; 7385 GO activities; 15491 GO incidence; 6 obsolete annotations	TYPED_SOURCE_LAYER_PASS
 A027	2026-11-27	P1A.04G	Read-only molecular state composition stoichiometry and raw bridge diagnostic prepared; execution pending	PENDING
+A028	2026-11-27	P1A.04G	User reported audit complete in 49.27 s; 61418 entities, zero composition cycles, depth 13, 44489 positive stoichiometries, 345409 raw nonself flow pair occurrences	STATE_COMPOSITION_AUDIT_PASS
+A029	2026-11-27	P1A.04H	Source-local state catalogue and fingerprint candidate construction prepared; execution pending	PENDING
