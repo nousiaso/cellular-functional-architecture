@@ -12,3 +12,4 @@ D010	2026-11-26	P1A.03B	Accept observed safe identifier namespaces and audit all
 D011	2026-11-26	P1A.03B	Hold seven unindexed models separately from 1520 indexed human acquisition	Unknown model taxonomy; titles not sufficient for definitive entity-level classification	PROPOSED
 D012	2026-11-27	P1A.04B	Preserve source-scoped activities, roles and evidence; defer canonicalization until reference and provenance audit	Observed Reactome imports, mixed taxonomy, empty molecule lists with retained activity machinery	PROPOSED
 D013	2026-11-27	P1A.04C	Stage source records and typed raw assertions in SQLite before harmonization	Preserve scoped identity, full payloads, role distinctions and evidence without premature merging	PROPOSED
+D014	2026-11-27	P1A.04D	Preserve staged database unchanged and audit record-level identity before merging	Exact event crosswalk and molecular reference coverage are prerequisites for defensible graph construction	PROPOSED
