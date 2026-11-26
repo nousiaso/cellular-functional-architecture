@@ -23,3 +23,5 @@ A020	2026-11-27	P1A.04C	User reported complete staging PASS; 1451589632 bytes; 5
 A021	2026-11-27	P1A.04D	Read-only record-level identity and event crosswalk diagnostic prepared; execution pending	PENDING
 A022	2026-11-27	P1A.04D	User-reported read-only audit complete in 43.58 s; 16187 unique event IDs; 682 bare GO stable occurrences uniquely matched; taxon and state coverage recorded	IDENTITY_CROSSWALK_PASS
 A023	2026-11-27	P1A.04E	RO/ECO immutable release commits and blob IDs verified; acquisition and term resolution prepared; execution pending	PENDING
+A024	2026-11-27	P1A.04E	User reported RO 15/15 and ECO 30/30 active; GO 2951 active and 4 obsolete of 2955; version/hash gates passed; 6.66 s	ONTOLOGY_REFERENCE_AUDIT_PASS
+A025	2026-11-27	P1A.04F	Source-scoped typed incidence construction prepared; execution pending	PENDING
