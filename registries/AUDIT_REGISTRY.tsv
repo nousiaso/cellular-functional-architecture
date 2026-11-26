@@ -3,3 +3,5 @@ A000	2026-11-26	P1A.00	User terminal output: empty project folder; Git 2.43.7; P
 A001	2026-11-26	P1A.01	Protocol proposal prepared; review pending	PENDING
 A002	2026-11-26	P1A.00	User reported clean checkout at 8ae40ea; remote head independently verified; storage quota remains unverified	GIT_SYNC_PASS
 A003	2026-11-26	P1A.02	Official release listings reviewed; read-only cluster source preflight prepared; actual endpoints and source bytes not certified	PENDING
+A004	2026-11-26	P1A.02	Cluster preflight at 6e655a3: 20/20 HTTP 200; version 98; 2078 GO-CAM links; 3/3 pilots parsed; mixed taxa	ACCESSIBILITY_PASS
+A005	2026-11-26	P1A.03	Core acquisition script and offline self-test fixtures prepared; cluster execution pending	PENDING
