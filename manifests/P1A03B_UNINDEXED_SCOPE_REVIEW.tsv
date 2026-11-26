@@ -1,0 +1,8 @@
+model_id	title	date_modified	activities_n	molecules_n	objects_n	provenances_n	model_taxon	model_status	preliminary_title_class	disposition
+62900b6400001631	Mycophenolic acid - Penicillium brevicompactum	2022-07-29	10	11	36	1	NULL	production	FUNGAL_BIOSYNTHESIS_TITLE	HOLD_SCOPE_REVIEW
+62b4ffe300002340	Penicillin G from Penicillium chrysogenum	2022-07-07	3	6	16	1	NULL	production	FUNGAL_BIOSYNTHESIS_TITLE	HOLD_SCOPE_REVIEW
+62b4ffe300002544	Ilicicolin H (Neonectria sp. strain DH2)	2023-03-16	6	7	18	1	NULL	production	FUNGAL_BIOSYNTHESIS_TITLE	HOLD_SCOPE_REVIEW
+62b4ffe300002596	Ilicicolin H (Talaromyces variabilis)	2023-03-16	7	9	22	1	NULL	production	FUNGAL_BIOSYNTHESIS_TITLE	HOLD_SCOPE_REVIEW
+62b4ffe300002925	psilocybin (Psilocybe cubensis)	2022-07-07	4	5	15	1	NULL	production	FUNGAL_BIOSYNTHESIS_TITLE	HOLD_SCOPE_REVIEW
+62b4ffe300003513	Lovastatin biosynthesis (Aspergillus terreus)	2023-03-16	6	9	21	1	NULL	production	FUNGAL_BIOSYNTHESIS_TITLE	HOLD_SCOPE_REVIEW
+62f58d8800006555	Gut Microbiota bile acid metabolism: Cholate 7-dehydroxylation to produce deoxycholate (DCA) by bai operon. (Human-Clostridium scindens) update with CHEBI:193152	2023-03-27	9	10	30	1	NULL	production	HOST_MICROBIOME_CONTEXT_TITLE	HOLD_SCOPE_REVIEW
