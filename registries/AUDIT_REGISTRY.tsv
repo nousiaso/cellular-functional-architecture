@@ -1,3 +1,5 @@
 id	date	stage	evidence	status
 A000	2026-11-26	P1A.00	User terminal output: empty project folder; Git 2.43.7; Python 3.12.7; curl unzip sha256sum available; shared filesystem mounted; individual quota not reported	PARTIAL_PASS
 A001	2026-11-26	P1A.01	Protocol proposal prepared; review pending	PENDING
+A002	2026-11-26	P1A.00	User reported clean checkout at 8ae40ea; remote head independently verified; storage quota remains unverified	GIT_SYNC_PASS
+A003	2026-11-26	P1A.02	Official release listings reviewed; read-only cluster source preflight prepared; actual endpoints and source bytes not certified	PENDING

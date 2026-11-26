@@ -1,0 +1,21 @@
+id	role	resource	release_candidate	url	purpose
+R01	primary	Reactome	98	https://reactome.org/download/current/biopax.zip	BioPAX Level 3
+R02	native_reference	Reactome	98	https://reactome.org/download/current/reactome.graphdb.dump	native graph dump
+R03	format_comparison	Reactome	98	https://reactome.org/download/current/homo_sapiens.3.1.sbml.tgz	human SBML
+R04	extraction_check	Reactome	98	https://reactome.org/download/current/reactome_reaction_exporter.txt	reaction export
+R05	extraction_check	Reactome	98	https://reactome.org/download/current/ProteinRoleReaction.txt	protein roles
+R06	provenance	Reactome	98	https://reactome.org/download/current/ReactionPMIDS.txt	publication associations
+R07	extraction_check	Reactome	98	https://reactome.org/download/current/UniProt2ReactomeReactions.txt	protein-reaction mapping
+R08	benchmark_only	Reactome	98	https://reactome.org/download/current/ReactomePathways.txt	pathway catalogue
+R09	benchmark_only	Reactome	98	https://reactome.org/download/current/ReactomePathwaysRelation.txt	pathway hierarchy
+R10	benchmark_only	Reactome	98	https://reactome.org/download/current/ReactomePathways.gmt.zip	gene-set baseline
+R11	scope_audit	Reactome	98	https://reactome.org/download/current/HumanDiseasePathways.txt	disease pathway inventory
+R12	identity	Reactome	98	https://reactome.org/download/current/reactome_stable_ids.txt	stable IDs
+R13	format_comparison	Reactome	98	https://reactome.org/download/current/gocam.zip	Reactome-derived GO-CAM; not independent
+R14	archive_alternative	Reactome	98	https://zenodo.org/records/24067822/files/reactome-download-directory.zip?download=1	4.7 GB full archive; published MD5 01b3820e03ae20e2a55305c5625652ff
+G01	primary_index	GO	2026-08-05	https://release.geneontology.org/2026-08-05/go-cams/json/index.html	model directory
+G02	scope_audit	GO	2026-08-05	https://release.geneontology.org/2026-08-05/go-cams/index-json/taxon_index.json	taxon index; schema not inspected
+G03	ontology_identity	GO	2026-08-05	https://release.geneontology.org/2026-08-05/ontology/go.obo	term identity and relations; hierarchy held out for benchmark
+G04	benchmark_only	GO	2026-08-05	https://release.geneontology.org/2026-08-05/annotations/gaf/HUMAN-uniprot.gaf.gz	human annotation baseline
+G05	provenance	GO	2026-08-05	https://release.geneontology.org/2026-08-05/summary.txt	release summary
+H01	identity	HGNC	mutable_snapshot	https://storage.googleapis.com/public-download-files/hgnc/tsv/tsv/hgnc_complete_set.txt	approved gene mappings; archive selection pending
