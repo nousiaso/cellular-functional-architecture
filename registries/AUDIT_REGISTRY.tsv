@@ -15,3 +15,5 @@ A012	2026-11-26	P1A.03B	Seven unindexed model JSONs retrieved and parsed; all ta
 A013	2026-11-27	P1A.03B	User reported v1.1 pilot 10/10; 5 hexadecimal and 5 Reactome IDs; 81 activities; 104 molecules; 229 objects; 10 provenances; 275100 bytes; full transfer pending	PILOT_ACQUISITION_PASS
 A014	2026-11-27	P1A.03C	User reported 1520/1520 human-indexed models; 23434222 bytes; 7385 activity entries; 32 empty molecules lists; 10 nonhuman primary taxa	FULL_ACQUISITION_PASS
 A015	2026-11-27	P1A.04A	Read-only local rehash and schema reconnaissance prepared; actual execution pending	PENDING
+A016	2026-11-27	P1A.04A	Core rehash 19/19; GO-CAM rehash 1520/1520; all taxon sets match; full human BioPAX XML parse; 133 Reactome GO-CAM filename overlaps	INTEGRITY_SCHEMA_RECONNAISSANCE_PASS
+A017	2026-11-27	P1A.04B	Read-only semantic diagnostic prepared; execution pending	PENDING
