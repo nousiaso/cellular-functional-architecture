@@ -11,3 +11,4 @@ D009	2026-11-26	P1A.03B	Acquire verified human-indexed GO-CAM candidate models b
 D010	2026-11-26	P1A.03B	Accept observed safe identifier namespaces and audit all human-indexed candidates including Reactome-style IDs	Avoid identifier-based exclusions; defer source deduplication to provenance audit	PROPOSED
 D011	2026-11-26	P1A.03B	Hold seven unindexed models separately from 1520 indexed human acquisition	Unknown model taxonomy; titles not sufficient for definitive entity-level classification	PROPOSED
 D012	2026-11-27	P1A.04B	Preserve source-scoped activities, roles and evidence; defer canonicalization until reference and provenance audit	Observed Reactome imports, mixed taxonomy, empty molecule lists with retained activity machinery	PROPOSED
+D013	2026-11-27	P1A.04C	Stage source records and typed raw assertions in SQLite before harmonization	Preserve scoped identity, full payloads, role distinctions and evidence without premature merging	PROPOSED

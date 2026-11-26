@@ -17,3 +17,5 @@ A014	2026-11-27	P1A.03C	User reported 1520/1520 human-indexed models; 23434222 b
 A015	2026-11-27	P1A.04A	Read-only local rehash and schema reconnaissance prepared; actual execution pending	PENDING
 A016	2026-11-27	P1A.04A	Core rehash 19/19; GO-CAM rehash 1520/1520; all taxon sets match; full human BioPAX XML parse; 133 Reactome GO-CAM filename overlaps	INTEGRITY_SCHEMA_RECONNAISSANCE_PASS
 A017	2026-11-27	P1A.04B	Read-only semantic diagnostic prepared; execution pending	PENDING
+A018	2026-11-27	P1A.04B	Semantic diagnostic complete; 548688 BioPAX IDs; internal references resolved; 5423 causal and 10068 molecular GO association occurrences locally resolved	SEMANTIC_RECONNAISSANCE_PASS
+A019	2026-11-27	P1A.04C	Source-faithful SQLite staging script prepared; fixture and cluster execution pending	PENDING
