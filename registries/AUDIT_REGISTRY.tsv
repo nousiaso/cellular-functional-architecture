@@ -10,3 +10,4 @@ A007	2026-11-26	P1A.03B	Taxon index human list length 1520; 67 taxon keys; plan 
 A008	2026-11-26	P1A.03B	v1 plan failed on nonhexadecimal human model identifiers before transfer	FAIL_IDENTIFIER_ASSUMPTION
 A009	2026-11-26	P1A.03B	Read-only cluster audit: 2370 unique HTML IDs; 1520 unique human IDs all present; 292 IDs omitted by original regex	INDEX_RECONCILIATION_PASS
 A010	2026-11-26	P1A.03B	v1.1 namespace-safe parser and stratified pilot prepared; execution pending	PENDING
+A011	2026-11-26	P1A.03B	v1.1 cluster plan: 2370 HTML IDs; 2363 taxon union; 1520 unique human; 0 missing human; 126 multitaxon; 7 unindexed	PLAN_PASS_WITH_UNINDEXED_REVIEW
