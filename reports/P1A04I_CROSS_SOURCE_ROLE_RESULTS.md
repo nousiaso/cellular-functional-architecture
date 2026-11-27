@@ -1,0 +1,9 @@
+# P1A.04I cross-source role audit results
+
+User retry at 9669d38ca66ea5c0ced502fcbb1fd73e5e4defa3 used the original script with an in-memory case correction after verifying R06 size 1136864 and SHA256 3b2169fc94cbe51b3eea84e28c11c37512ebd834c7bca97f18719f0027a5abf8. Completed in 5.64 s. Derived manifests rehash PASS 13/13. Permanent script correction resolves R06 by acquisition receipt and checks pinned size/hash. No raw data altered. Corrected committed implementation has not yet been run.
+
+682 matched GO activity occurrences represent 669 distinct Reactome stable events; all 682 cite the same event, 614 have equal nonempty flattened catalytic accession inventories and 68 are strict subsets. No direct PMID references in those occurrences. 509 of 6703 nonbare or unmatched occurrences cite at least one BioPAX event. This strongly supports provenance dependence, not full molecular equivalence. Preserve all source assertions and use explicit alias/crosswalk candidates rather than add independent evidence for imports. GO-CAM may add typed activity and causal context. No automatic merges.
+
+GO activity-distinct reference occurrences: 12828 recognized PMID strings, 2405 Reactome strings, 1140 others. Not counts of unique studies. R06 numeric PMID filtering recovered 14821 event IDs versus 14822 in earlier unfiltered event inventory. Exact difference requires audit before interpreting absence of evidence. The 9323 events without linked Catalysis controller do not establish spontaneous or nonhuman reactions. Other catalyst profiles and fingerprint results reproduce interrupted run. Four ambiguous stoichiometry owner-entity cases remain explicitly held.
+
+Next: reconcile R06 numeric versus unfiltered counts, compare direct BioPAX event publication xrefs and export, inspect GO activity and causal-edge evidence by source/model namespace, with no imputed references or evidence weights. Source certification still pending.

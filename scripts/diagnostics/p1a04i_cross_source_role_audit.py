@@ -129,7 +129,16 @@ def main():
     emit("STOICHIOMETRY_REVIEW_ROWS",list(rows(STATE/"reaction_stoichiometry_review.tsv")))
     # Reaction-PMID export is a provenance comparison, not the complete evidence set.
     r06=defaultdict(set)
-    path=ROOT/"data/raw/reactome_v98/provenance/ReactionPMIDs.txt"
+    receipt_rows=json.loads((ROOT/"data/raw/P1A03_CORE_RECEIPTS.json").read_text())
+    matches=[r for r in receipt_rows if r.get("id")=="R06"]
+    need(len(matches)==1,"R06 receipt cardinality")
+    receipt=matches[0]
+    path=(ROOT/receipt["path"]).resolve()
+    need(path.is_relative_to((ROOT/"data/raw").resolve()),"R06 path outside raw directory")
+    need(path.is_file(),"R06 receipt path missing")
+    need(path.stat().st_size==receipt["bytes"]==1136864,"R06 size mismatch")
+    need(sha(path)==receipt["sha256"]=="3b2169fc94cbe51b3eea84e28c11c37512ebd834c7bca97f18719f0027a5abf8","R06 checksum mismatch")
+    emit("R06_SOURCE_INTEGRITY_PASS",str(path.relative_to(ROOT)))
     with path.open(newline="",encoding="utf-8") as f:
         for row in csv.reader(f,delimiter="\t"):
             if len(row)==2 and row[0] in ops and row[1].isdigit():r06[row[0]].add(row[1])
