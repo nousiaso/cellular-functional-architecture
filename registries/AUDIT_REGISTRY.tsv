@@ -21,3 +21,5 @@ A085	2026-11-27	P1C.01	Native typed incidence and exact-state comparison project
 A086	2026-11-27	P1C.01	User reported PASS; all 16187 operations native incident; exact flow 339542 distinct directed nonself pairs and 345409 witness occurrences; five separate comparison layers; manifest c19922ead412401c862b11faad63a4b9c1de7cc683e2d91c8695ac753938b09c	PASS
 A087	2026-11-27	P1C.02	User reported preflight: 8098 exact shared states including 12 self-only; OR all 22890 and supported 22352 occurrence upper bounds; AND 41003 exact location and 27304 different; context upper bound 115947160	FEASIBILITY_PASS
 A088	2026-11-27	P1C.02	Deduplicated OR/direct AND candidates and factored context implemented; execution pending	PENDING
+A089	2026-11-27	P1C.02	User reported PASS; 12990 OR and 64745 AND additional operation pairs; 77716 distinct added-only union; sparse context 25000 incidences; manifest c7bc4a83b0ec28dd450e16f6cd69cc3b6de0b6356285a8d4e04284605e7f0534	PASS
+A090	2026-11-27	P1D.01	Read-only graph coverage evidence component and local null proposal feasibility diagnostic prepared; no fitting or data split	PENDING
