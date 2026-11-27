@@ -4,6 +4,7 @@ Optional --create is explicit opt-in to a dedicated project Conda prefix.
 No biological data, inference outputs or changes to base/other environments.
 """
 import argparse
+import hashlib
 from collections import Counter, defaultdict
 import json
 import math
@@ -20,19 +21,26 @@ PREFIX=ROOT/".conda/cfa_inference_v1"
 CACHE=ROOT/".conda/pkgs"
 
 def smoke():
-    import graph_tool as gt
-    from graph_tool.inference import LayeredBlockState, minimize_blockmodel_dl
+    t_import=time.monotonic()
+    print("SMOKE_PYTHON_STARTED",flush=True)
     import numpy as np
+    print("NUMPY_IMPORTED",round(time.monotonic()-t_import,3),flush=True)
+    import graph_tool as gt
+    print("GRAPH_TOOL_IMPORTED",round(time.monotonic()-t_import,3),flush=True)
+    from graph_tool.inference import LayeredBlockState, minimize_blockmodel_dl
     import scipy
+    print("INFERENCE_IMPORTED",round(time.monotonic()-t_import,3),flush=True)
     gt.seed_rng(20261127)
     rng=random.Random(20261127)
     # Two operation blocks, two molecular-state blocks, three directed roles.
     # Planted labels are used only for evaluating this synthetic test.
     m=60;n=2*m
     g=gt.Graph(directed=True);g.add_vertex(2*n)
-    role=g.new_edge_property("int")
-    kind=g.new_vertex_property("int")
+    role=g.new_edge_property("int64_t")
+    kind=g.new_vertex_property("int64_t")
     kind.a[:n]=0;kind.a[n:]=1
+    blocks=g.new_vertex_property("int64_t")
+    blocks.a[:]=kind.a
     data=[]
     for e in range(n):
         for i in range(n):
@@ -51,9 +59,12 @@ def smoke():
     print("BACKEND_VERSIONS",gt.__version__,np.__version__,scipy.__version__,flush=True)
     print("SYNTHETIC_GRAPH",g.num_vertices(),g.num_edges(),dict(Counter(k for a,b,k in data)),flush=True)
     args=dict(ec=role,independent=True,deg_corr=True,clabel=kind,pclabel=kind)
-    start=LayeredBlockState(g,b=kind,**args)
+    print("CONSTRUCTOR_START",flush=True)
+    start=LayeredBlockState(g,b=blocks,**args)
     null_dl=float(start.entropy())
+    print("CONSTRUCTOR_PASS",null_dl,flush=True)
     t=time.monotonic()
+    print("OPTIMIZER_START",flush=True)
     state=minimize_blockmodel_dl(g,state=LayeredBlockState,state_args=args)
     dl=float(state.entropy());b=np.asarray(state.get_blocks().a).copy()
     if not math.isfinite(dl) or not math.isfinite(null_dl):raise RuntimeError("nonfinite description length")
@@ -72,15 +83,34 @@ def smoke():
 
 def run(prefix,conda):
     print("TEST_ENVIRONMENT",str(prefix),flush=True)
-    x=subprocess.run([conda,"run","--no-capture-output","-p",str(prefix),"python","-u",str(Path(__file__).resolve()),"--smoke"],timeout=300)
+    env=os.environ.copy()
+    for k in ("OMP_NUM_THREADS","OPENBLAS_NUM_THREADS","MKL_NUM_THREADS"):
+        env[k]="1"
+    x=subprocess.run([str(prefix/"bin/python"),"-u",str(Path(__file__).resolve()),"--smoke"],env=env,timeout=600)
     return x.returncode==0
 
+def receipt(prefix,conda):
+    lock=prefix.parent/"cfa_inference_v1.explicit.txt"
+    text=subprocess.check_output([conda,"list","--prefix",str(prefix),"--explicit"],text=True,timeout=120)
+    if lock.exists():
+        if lock.read_text()!=text:raise RuntimeError("existing package receipt differs; no overwrite")
+    else:
+        with lock.open("x") as f:f.write(text)
+    print("EXPLICIT_LOCK",str(lock),"SHA256",hashlib.sha256(lock.read_bytes()).hexdigest(),flush=True)
+
 def main():
-    p=argparse.ArgumentParser();p.add_argument("--smoke",action="store_true");p.add_argument("--create",action="store_true")
+    p=argparse.ArgumentParser();p.add_argument("--smoke",action="store_true");p.add_argument("--create",action="store_true");p.add_argument("--project-only",action="store_true")
     a=p.parse_args()
     if a.smoke:smoke();return
     conda=shutil.which("conda")
     if not conda:raise RuntimeError("conda not found")
+    if a.project_only:
+        if a.create:raise RuntimeError("--project-only and --create are mutually exclusive")
+        if not (PREFIX/"bin/python").is_file():raise RuntimeError("project environment missing")
+        if not run(PREFIX,conda):raise RuntimeError("project backend smoke failed")
+        receipt(PREFIX,conda)
+        print("P1D04_PROJECT_BACKEND_PASS",flush=True)
+        return
     info=json.loads(subprocess.check_output([conda,"info","--json"],text=True,timeout=60))
     prefixes=sorted({Path(e) for e in info.get("envs",[]) if Path(e).is_dir()})
     if PREFIX.is_dir() and PREFIX not in prefixes:prefixes.append(PREFIX)
@@ -91,6 +121,7 @@ def main():
     print("EXISTING_GRAPH_TOOL_CANDIDATES",len(candidates),[x.name for x in candidates],flush=True)
     for e in candidates:
         if run(e,conda):
+            if e.resolve()==PREFIX.resolve():receipt(e,conda)
             print("P1D04_EXISTING_BACKEND_PASS",str(e),flush=True);return
     if not a.create:
         print("P1D04_BACKEND_UNAVAILABLE_NO_INSTALLATION_PERFORMED",flush=True)
@@ -105,8 +136,6 @@ def main():
                     "--override-channels","--channel","conda-forge","--strict-channel-priority",
                     "python=3.12","graph-tool-base=3.9","numpy","scipy"],env=env,check=True)
     if not run(PREFIX,conda):raise RuntimeError("new backend smoke failed")
-    lock=PREFIX.parent/"cfa_inference_v1.explicit.txt"
-    text=subprocess.check_output([conda,"list","--prefix",str(PREFIX),"--explicit"],text=True)
-    with lock.open("x") as f:f.write(text)
-    print("P1D04_CREATED_BACKEND_PASS",str(PREFIX),"EXPLICIT_LOCK",str(lock),flush=True)
+    receipt(PREFIX,conda)
+    print("P1D04_CREATED_BACKEND_PASS",str(PREFIX),flush=True)
 if __name__=="__main__":main()
