@@ -23,3 +23,5 @@ A087	2026-11-27	P1C.02	User reported preflight: 8098 exact shared states includi
 A088	2026-11-27	P1C.02	Deduplicated OR/direct AND candidates and factored context implemented; execution pending	PENDING
 A089	2026-11-27	P1C.02	User reported PASS; 12990 OR and 64745 AND additional operation pairs; 77716 distinct added-only union; sparse context 25000 incidences; manifest c7bc4a83b0ec28dd450e16f6cd69cc3b6de0b6356285a8d4e04284605e7f0534	PASS
 A090	2026-11-27	P1D.01	Read-only graph coverage evidence component and local null proposal feasibility diagnostic prepared; no fitting or data split	PENDING
+A091	2026-11-27	P1D.01	User reported PASS; native largest component 15292, composition 16094, flow 12272; publication group largest 4962; local swap acceptances 4951/4588/4018/2097 of 5000; N3 singleton incidences 12954	FEASIBILITY_PASS
+A092	2026-11-27	P1D.02	Finite-sweep multi-chain diagnostic and illustrative publication-group holdout feasibility prepared; execution pending	PENDING
