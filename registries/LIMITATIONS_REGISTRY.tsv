@@ -21,3 +21,9 @@ L019	P1A	Chemical external xrefs may be sparse or ambiguous and structural descr
 L020	P1A	Protein-to-gene ambiguity and unspecified complex membership can inflate gene counts or misrepresent required components	Keep candidate sets and molecular units separate; later gene mapping sensitivity and missing-component flags	OPEN
 L021	P1A	V1 regulatory comparison used incorrect serialized control-type comparisons	V2 parser fixtures and full cross-format comparison passed; v1 results preserved historically	RESOLVED
 L022	P1A	Native graph dump semantic verification not performed; SBML template material semantics and unrecorded coefficients not certified	Use verified BioPAX as primary and SBML as dependent comparison; retain limitations and deferred artifacts explicitly	OPEN
+L023	1	Curated topology encodes prior functional organization even without labels	Primary precedence exclusion; pathway-conditioned baselines and overlap-aware nulls	OPEN
+L024	1	Statistical blocks and aggregated paths do not establish coherent functional assemblies	Require operation-level molecular witnesses and flag incomplete requirements	OPEN
+L025	1	Expanded OR/AND and contextual links may create false mechanistic shortcuts	Separate compatibility/prerequisite/context layers; no automatic identity or inferred transfer	OPEN
+L026	1	Source topology and shared provenance can dominate pooled models	Reactome-only primary; GO corroboration with mapping/evidence audits	OPEN
+L027	1	v98 aggregates already inspected; release changes may reflect old literature or revisions	Retrospective temporal evaluation with historical features; future untouched release preferred	OPEN
+L028	1	Pathway-preserving nulls may have insufficient mixing and assembly search may be combinatorial	Pilot bounded search and null feasibility; constrain claims if infeasible	OPEN

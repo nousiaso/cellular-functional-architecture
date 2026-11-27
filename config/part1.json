@@ -1,15 +1,11 @@
 {
-  "protocol_version": "0.2.0",
-  "status": "P1A_FROZEN_P1B_IN_PROGRESS",
+  "protocol_version": "0.3.0",
+  "status": "P1A_FROZEN_P1B_IN_PROGRESS_REVISED_DIRECTION_APPROVED",
   "species_taxon": 9606,
   "biological_scope": [
     "macrophages",
     "fibroblasts",
     "endothelial cells"
-  ],
-  "primary_sources_proposed": [
-    "Reactome",
-    "GO-CAM"
   ],
   "source_releases": {
     "Reactome": "98",
@@ -25,5 +21,31 @@
   "null_model": null,
   "random_seed": null,
   "acceptance_thresholds": null,
-  "source_lock": "manifests/P1A_SOURCE_LOCK_V1.json"
+  "source_lock": "manifests/P1A_SOURCE_LOCK_V1.json",
+  "harmonization_sources": [
+    "Reactome",
+    "GO-CAM"
+  ],
+  "primary_discovery_source": "Reactome",
+  "corroboration_source": "GO-CAM_nonimported_eligible_assertions",
+  "primary_excluded_layers": [
+    "curated_precedence",
+    "pathway_membership",
+    "pathway_hierarchy",
+    "GO-CAM"
+  ],
+  "inference_levels": [
+    "structural_role_modules",
+    "operation_witnessed_composite_assemblies"
+  ],
+  "primary_hypotheses": [
+    "H02",
+    "H05"
+  ],
+  "temporal_validation": {
+    "status": "FEASIBILITY_PENDING",
+    "v98_exposure": "aggregate_diagnostics_already_inspected",
+    "historical_releases": null
+  },
+  "confirmatory_design_status": "NOT_FROZEN"
 }

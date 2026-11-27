@@ -1,7 +1,8 @@
 id	phase	hypothesis	status
-H00	All	Independent mechanistic, expression and experimental views converge on reusable capabilities	PROPOSED
-H01	1	Typed mechanistic organization exceeds constrained nulls	PROPOSED
-H02	1	Mechanistic data add information beyond membership overlap	PROPOSED
-H03	1	Architectures replicate under evidence-block resampling	PROPOSED
-H04	1	Multiscale structure improves representation relative to flat alternatives	PROPOSED
-H05	1	Modules contain complementary operations beyond annotation redundancy	PROPOSED
+H00	All	Separately inferred mechanistic and expression views converge with experimental functional evidence; audit historical overlap	PROPOSED
+H01	1	Typed mechanistic organization exceeds basic constrained nulls	DIAGNOSTIC
+H02	1	Frozen architecture adds held-out predictive information beyond curated pathways at specified levels shared machinery gene overlap degree and context	PRIMARY_APPROVED_DIRECTION_TEST_PENDING
+H03	1	Incremental architecture support replicates under evidence-block and representation perturbations	ROBUSTNESS_REQUIRED_TEST_PENDING
+H04	1	Multiscale structure improves representation relative to flat alternatives on common targets	SECONDARY_TEST_PENDING
+H05	1	Operation-witnessed complementary cross-pathway assemblies exceed pathway-conditioned expectations beyond annotation redundancy	PRIMARY_APPROVED_DIRECTION_TEST_PENDING
+H06	1	Frozen architectures predict later curated assertions beyond historical pathway and degree baselines with documented temporal exposure	TEMPORAL_EXTENSION_FEASIBILITY_PENDING
