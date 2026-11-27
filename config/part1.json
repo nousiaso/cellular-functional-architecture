@@ -1,6 +1,6 @@
 {
   "protocol_version": "0.2.0",
-  "status": "P1A_REVIEW_CANDIDATE_NOT_FROZEN",
+  "status": "P1A_FROZEN_P1B_IN_PROGRESS",
   "species_taxon": 9606,
   "biological_scope": [
     "macrophages",
@@ -24,5 +24,6 @@
   "graph_model": null,
   "null_model": null,
   "random_seed": null,
-  "acceptance_thresholds": null
+  "acceptance_thresholds": null,
+  "source_lock": "manifests/P1A_SOURCE_LOCK_V1.json"
 }

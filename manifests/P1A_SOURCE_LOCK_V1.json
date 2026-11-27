@@ -1,0 +1,28 @@
+{
+  "schema_version": "CFA_P1A_LOCK_v1",
+  "status": "FROZEN_APPROVED",
+  "approved_date": "2026-11-27",
+  "approval": "User explicitly approved consolidated Part 1A source and representation policy including documented limitations and authorized Part 1B.",
+  "candidate_git_commit": "2abc36d7d6cbbfb6653f45bd18856a45c131fbfb",
+  "candidate_path": "results/P1A05_SOURCE_LOCK_CANDIDATE_V1/CANDIDATE.json",
+  "candidate_sha256": "58e482464e67620775e04e9e81a056e28592c0676971f3b0236f762171c41ff7",
+  "manifest_path": "results/P1A05_SOURCE_LOCK_CANDIDATE_V1/SOURCE_MANIFEST.tsv",
+  "manifest_sha256": "f10da3b9af58346ed26c8947b8339857ce1a498a54b982e038b151aa8d6c586e",
+  "manifest_rows": 2085,
+  "policy_and_registry_sha256": {
+    "config/part1.json": "f1be709adf2860df58ee01172262dc36cee208623ee852478e059b496e8f8854",
+    "protocol/P1A_SOURCE_REPRESENTATION_POLICY.md": "c40a356c92f8d23722183ace13ec2d5868d10d1ab54d95d006cb531c4ac93ebe",
+    "protocol/PART1_MATHEMATICAL_PROTOCOL.md": "521f0349f70078e0552d1078dceb7eb62ce2e5a2dc3eb0838b4cd3147106e982",
+    "protocol/SOURCE_LICENSE_POLICY.md": "322f72c862ef9c170ef4f2ac2e7103eb208e1dd750152a2db2a2087d91aed4e4",
+    "registries/AUDIT_REGISTRY.tsv": "f44fcadb2caddbfc4d44cdd0d52fca24fda14dee68bd46f1288aed9e7b8a9964",
+    "registries/DECISION_LOG.tsv": "878792c50639c96b36ca67a949543944a53de1f3bb09d917166cec125844c7d2",
+    "registries/LIMITATIONS_REGISTRY.tsv": "3f7254ef59fc1e854433bb116fb37463c34bcb70957bf50ac2aa5f2a65335da4"
+  },
+  "deferred": [
+    "R02 native semantic verification",
+    "R14 full archive",
+    "seven unindexed GO-CAM models"
+  ],
+  "scope": "Source collection and representation principles only; historical candidate files remain unchanged; graph, exact harmonization/scope eligibility, algorithm, null models, statistical thresholds and functional validation not frozen.",
+  "evidence": "User-reported A066 cluster result; no direct cluster access"
+}
