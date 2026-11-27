@@ -44,3 +44,4 @@ A041	2026-11-27	P1A.04M	Small UniProt identity and release-header pilot prepared
 A042	2026-11-27	P1A.04M	User reported 7/7 reviewed entries; release 2026_04 04-November-2026; 2 exact isoforms and 1 exact processed chain; 6 human and 1 Zika virus	UNIPROT_IDENTITY_PILOT_PASS
 A043	2026-11-27	P1A.04N	Release-checked targeted UniProt acquisition prepared; plan and execution pending	PENDING
 A044	2026-11-27	P1A.04N	User reported self-test and 7/7 rehash PASS; plan 520 tokens and 490 parents; at least 50 receipts acquired; identity schema exception before final inventory	PARTIAL_PASS_SCHEMA_EXCEPTION
+A045	2026-11-27	P1A.04N	User diagnostic verified 73 completed receipts; P03208 is inactive DEMERGED with two successor candidates; release consistent; parser correction prepared	INACTIVE_SCHEMA_CONFIRMED_RETRY_PENDING

@@ -57,8 +57,27 @@ def tokens():
     return result
 def identity(token,obj):
     acc=parent(token); primary=obj.get("primaryAccession")
+    need(isinstance(primary,str) and bool(primary),"identity schema: missing primary accession "+acc)
+    if obj.get("entryType")=="Inactive":
+        need(primary==acc,"inactive accession identity mismatch "+acc)
+        reason=obj.get("inactiveReason")
+        need(isinstance(reason,dict),"inactive reason schema "+acc)
+        kind=reason.get("inactiveReasonType")
+        need(isinstance(kind,str) and bool(kind),"inactive reason type "+acc)
+        successors=reason.get("mergeDemergeTo",[])
+        need(isinstance(successors,list) and all(isinstance(x,str) and re.fullmatch(r"[A-Z0-9]+",x) for x in successors),"inactive successor schema "+acc)
+        if kind=="DEMERGED":
+            need(len(set(successors))>=2,"demerged successor cardinality "+acc)
+        # An inactive record is a verified historical identifier, not a
+        # verified active protein or a taxonomic assignment. Never follow
+        # or choose a successor automatically, even for a singleton list.
+        return {"token":token,"queried_parent":acc,"primary":primary,
+                "identity":"inactive_entry","substate":"unresolved",
+                "taxon_id":None,"entry_type":"Inactive",
+                "inactive_reason_type":kind,"successor_candidates":successors,
+                "inactive_reason":reason}
     org=obj.get("organism") or {}
-    need(isinstance(primary,str) and isinstance(org.get("taxonId"),int),"identity schema")
+    need(isinstance(org,dict) and type(org.get("taxonId")) is int,"identity schema: active entry taxonomy "+acc)
     status="primary" if acc==primary else "secondary" if acc in obj.get("secondaryAccessions",[]) else "unresolved_returned_identity"
     isoforms={x for c in obj.get("comments",[]) if c.get("commentType")=="ALTERNATIVE PRODUCTS"
               for i in c.get("isoforms",[]) for x in i.get("isoformIds",[])}
@@ -124,6 +143,21 @@ def self_test():
     need(identity("P12345-PRO_0000000001",obj)["substate"]=="feature_exact","feature fixture")
     need(identity("Q12345",obj)["identity"]=="secondary","secondary fixture")
     need(identity("Q99999",obj)["taxon_id"] is None,"unconfirmed identity fixture")
+    inactive={"entryType":"Inactive","primaryAccession":"P03208",
+              "inactiveReason":{"inactiveReasonType":"DEMERGED","mergeDemergeTo":["P0DXO9","P0DXP0"]}}
+    x=identity("P03208",inactive)
+    need(x["identity"]=="inactive_entry" and x["taxon_id"] is None and x["substate"]=="unresolved","inactive identity fixture")
+    need(x["successor_candidates"]==["P0DXO9","P0DXP0"],"demerged successor fixture")
+    need(identity("P03208-2",inactive)["substate"]=="unresolved","inactive isoform fixture")
+    for malformed in ({"primaryAccession":"P03208","organism":None},
+                      {"primaryAccession":"P03208","entryType":"Inactive","inactiveReason":{}},
+                      {"primaryAccession":"P03208","entryType":"Inactive","inactiveReason":{"inactiveReasonType":"DEMERGED","mergeDemergeTo":["P0DXO9"]}}):
+        try:
+            identity("P03208",malformed)
+        except RuntimeError:
+            pass
+        else:
+            raise RuntimeError("malformed record accepted")
     emit("SELF_TEST_PASS")
 def main():
     ap=argparse.ArgumentParser();ap.add_argument("--self-test",action="store_true");ap.add_argument("--execute",action="store_true")
@@ -145,7 +179,12 @@ def main():
         path=records/(acc+".json")
         if path.exists():rec=json.loads(path.read_text());summary["reused"]+=1
         else:
-            rec=fetch(acc);verify(acc,rec);atomic(path,rec);summary["fetched"]+=1
+            try:
+                rec=fetch(acc);verify(acc,rec)
+            except Exception:
+                emit("PARENT_ACQUISITION_FAILED",acc)
+                raise
+            atomic(path,rec);summary["fetched"]+=1
             time.sleep(0.25)
         by_parent[acc]=verify(acc,rec)
         hashes[acc]={"status":rec["status"],"bytes":rec["bytes"],"payload_sha256":rec["sha256"],
@@ -157,12 +196,13 @@ def main():
         row=identity(token,obj) if obj is not None else {"token":token,"queried_parent":acc,"identity":"lookup_unresolved","substate":"unresolved","taxon_id":None}
         result.append(row);counts[(row["identity"],row["substate"])]+=1
         t=row["taxon_id"];taxa["human" if t==9606 else "unresolved" if t is None else "nonhuman"]+=1
-    resolved={"schema_version":"P1A04N_v1","release":RELEASE,"token_records":result,"parent_receipts":hashes}
+    resolved={"schema_version":"P1A04N_v1_1","release":RELEASE,"token_records":result,"parent_receipts":hashes}
     rp=OUT/"IDENTITY_INVENTORY.json"
     if rp.exists():need(json.loads(rp.read_text())==resolved,"stored identity inventory mismatch")
     else:atomic(rp,resolved)
     emit("IDENTITY_STATUS",sorted(counts.items()))
     emit("TAXONOMY_STATUS",dict(taxa))
+    emit("INACTIVE_TOKEN_RECORDS",[r for r in result if r["identity"]=="inactive_entry"])
     emit("UNRESOLVED_EXACT_TOKENS",[r["token"] for r in result if r["identity"] not in ("primary","secondary") or r["substate"] not in ("parent_token","isoform_exact","feature_exact")])
     emit("IDENTITY_INVENTORY_SHA256",digest(rp.read_bytes()))
     emit("P1A04N_TARGETED_UNIPROT_ACQUISITION_COMPLETE; NO_CANONICAL_MERGES")

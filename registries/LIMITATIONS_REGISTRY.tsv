@@ -14,3 +14,4 @@ L012	P1A	GO-CAM imported and inferred evidence may duplicate Reactome; historica
 L013	P1A	Publication references are incomplete and correlated; PMID overlap does not identify independent experiments	Retain assertion-level evidence and source links; publication-aware sensitivity analyses; no evidence weights yet	OPEN
 L014	P1A	Foreign-dependent human immune machinery and disease-associated failed reactions may be misclassified by simplistic scope rules	Trace role-specific molecular composition and context; preserve source assertions and uncertainty	OPEN
 L015	P1A	HGNC parent mappings cannot establish exact protein isoform or processed-chain identity	Targeted UniProt identity and feature verification; retain unresolved tokens	OPEN
+L016	P1A	Historical inactive and demerged UniProt identifiers may lack unique active molecular identity	Preserve original response and candidate successor links; require contextual review before resolution	OPEN
