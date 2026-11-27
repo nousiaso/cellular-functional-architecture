@@ -2,7 +2,7 @@
 
 **Goal:** discover complementary molecular assemblies beyond existing pathway organization, then test whether they correspond to independently derived cellular programmes and measured functions in human macrophages, fibroblasts and endothelial cells.
 
-**Status:** Part 1A source lock approved; Part 1B frozen with explicit approval; Part 1C in progress. Inference direction v0.3.0 approved; algorithms and confirmatory thresholds not frozen.
+**Status:** Part 1A source lock approved; Part 1B frozen with explicit approval; Part 1C.01 native incidence and exact projection implementation ready. Inference direction v0.3.0 approved; algorithms and confirmatory thresholds not frozen.
 
 ## Design
 1. Preserve molecular states, operations, typed roles, composition and provenance.
@@ -29,4 +29,4 @@ A statistical module is not a function. Curated topology is not function-blind. 
 | [Registries](registries/) | Current decisions, hypotheses, milestones and open limitations |
 
 ## Execution
-Parts 1B.01–1B.04 passed; do not rerun. See the certification report for manifest fingerprints, counts and freeze scope. Next: Part 1C construction according to approved v0.3.0 design (native incidence first; separate candidate projections). Run substantial processing through the SLURM wrapper from repository root. Raw data, results and logs stay outside Git. The approved source lock relies on historical Git objects: use a full clone (not a shallow snapshot).
+Parts 1B.01–1B.04 passed; do not rerun. See the certification report for manifest fingerprints, counts and freeze scope. Next: execute P1C.01 according to approved v0.3.0 design (native incidence first; separate comparison projections). See scripts/README.md. Run substantial processing through the SLURM wrapper from repository root. Raw data, results and logs stay outside Git. The approved source lock relies on historical Git objects: use a full clone (not a shallow snapshot).

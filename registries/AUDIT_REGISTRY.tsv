@@ -17,3 +17,4 @@ A081	2026-11-27	P1B.03	User reported PASS; native membership all 16187 operation
 A082	2026-11-27	P1B.04	Cross-table certification and native disease annotation implemented; execution and review pending	PENDING
 A083	2026-11-27	P1B.04	User reported technical PASS; 464032 assertion endpoints; 40324 OR witnesses and 10062 complex production candidates; full 16187 operation pathway coverage; 60015 publication pairs; 2284 causal and 3289 molecular GO candidates; manifest 82fc4ac1213edcfe4ea68c6b447870ea5e2027da9379f9276b52ef1be1bf6c7a	TECHNICAL_PASS_REVIEW_REQUIRED
 A084	2026-11-27	P1B.04	Explicit user approval to freeze Part 1B and proceed to 1C; certificate and preceding manifests pinned in P1B_HARMONIZATION_LOCK_V1.json	FROZEN_APPROVED
+A085	2026-11-27	P1C.01	Native typed incidence and exact-state comparison projections implemented under unchanged v0.3.0 design; execution pending	PENDING
