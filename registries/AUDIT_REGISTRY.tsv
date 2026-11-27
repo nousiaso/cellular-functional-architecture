@@ -63,3 +63,5 @@ A060	2026-11-27	P1A.04T_v2	Corrected JSON control-type decoding; direct-control 
 A061	2026-11-27	P1A.04T_v2	User reported parser fixtures and direct control preflight PASS; 10145 direct event targets; positive 1641 and negative 872 affected events; full corrected batch job submitted and running	PREFLIGHT_PASS_FULL_COMPARISON_PENDING
 A062	2026-11-27	P1A.04T_v2	User reported full corrected comparison PASS: all comparable role sets and 4400 coefficients equal; SLURM exit 0; wall 3428 s CPU 37.263 s peak Python RSS 538.1 MiB	FULL_CROSS_FORMAT_COMPARISON_PASS
 A063	2026-11-27	P1A.04U	Source receipt and disease ancestry preflight prepared; execution pending	PENDING
+A064	2026-11-27	P1A.04U	User reported source receipt and scope preflight PASS; 19 core and 6 reference inventories verified; no disease ancestry changes; SLURM exit 0	SOURCE_SCOPE_PREFLIGHT_PASS
+A065	2026-11-27	P1A.05	Consolidated source representation policy and provider licensing review prepared; local manifest candidate builder pending execution and review	REVIEW_REQUIRED

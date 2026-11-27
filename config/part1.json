@@ -1,10 +1,26 @@
 {
-  "protocol_version": "0.1.0",
-  "status": "PROPOSED",
+  "protocol_version": "0.2.0",
+  "status": "P1A_REVIEW_CANDIDATE_NOT_FROZEN",
   "species_taxon": 9606,
-  "biological_scope": ["macrophages", "fibroblasts", "endothelial cells"],
-  "primary_sources_proposed": ["Reactome", "GO-CAM"],
-  "source_releases": null,
+  "biological_scope": [
+    "macrophages",
+    "fibroblasts",
+    "endothelial cells"
+  ],
+  "primary_sources_proposed": [
+    "Reactome",
+    "GO-CAM"
+  ],
+  "source_releases": {
+    "Reactome": "98",
+    "GO_archive": "2026-08-05",
+    "GO_ontology": "2026-07-26",
+    "RO": "2026-09-04",
+    "ECO": "2026-07-10",
+    "ChEBI": "257",
+    "UniProtKB": "2026_04",
+    "HGNC": "receipt_pinned_mutable_snapshot"
+  },
   "graph_model": null,
   "null_model": null,
   "random_seed": null,

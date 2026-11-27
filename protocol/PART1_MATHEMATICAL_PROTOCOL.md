@@ -1,6 +1,8 @@
 # CFA Part 1 mathematical protocol
 
-Version: 0.1.0 — PROPOSED, not locked. Date: 2026-11-26.
+Version: 0.2.0 — REVIEW CANDIDATE, not locked. Date: 2026-11-27.
+
+Part 1A audited source/representation decisions are consolidated in [P1A_SOURCE_REPRESENTATION_POLICY.md](P1A_SOURCE_REPRESENTATION_POLICY.md) and [SOURCE_LICENSE_POLICY.md](SOURCE_LICENSE_POLICY.md). These refine Section 2–3, without selecting a graph model or numerical thresholds. Scope eligibility, actual graph construction, and confirmatory model testing remain separate later gates.
 
 ## 1. Estimands and limits
 Part 1 estimates reproducible organization of *curated molecular knowledge*, not physiological flux, cell-specific activity, causal effects, or cellular decision rules. A graph cluster is a candidate molecular architecture; a task requires an operational output and independent functional evidence. Missing annotations are unknown, not evidence of absence. Database completeness and curation bias limit all claims.
