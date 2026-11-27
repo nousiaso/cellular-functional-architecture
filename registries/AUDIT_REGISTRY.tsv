@@ -7,3 +7,5 @@ A071	2026-11-27	P1B.01	User reported source lock verification and source-scoped 
 A072	2026-11-27	P1B.02	User reported compatibility diagnostic: 6022 OR owners, 40324 terminal pairs, max 1301; OR direct 16182 and AND direct 223109 potential material bridge occurrences; distinct location/feature profiles	FEASIBILITY_REVIEWED
 A073	2026-11-27	P1B.02	Factored compatibility and identity catalogue implemented; execution pending	PENDING
 A074	2026-11-27	P1B.02	User reported PASS; 40324 OR terminal pairs (39627 supported location, 697 uncertain), 10062 complex production candidates, human reference gene counts reproduced; no graph edges merges or filters; manifest ba2ee290a9aeac833721b72a321273f8be64dd54dd0c47fbbcd7ce4b6d0cbbec	PASS
+A075	2026-11-27	P1B.03	User reported sequential BioPAX preflight 7.66 s; 17091 operation memberships, 2905 pathway relations, 19996 pathway-step records; 22 GO ECO terms and 316 assertions without terms	PREFLIGHT_PASS
+A076	2026-11-27	P1B.03	Sequential source scope provenance and pathway benchmark implementation prepared; execution pending	PENDING
