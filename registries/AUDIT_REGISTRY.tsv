@@ -35,3 +35,5 @@ A032	2026-11-27	P1A.04I	Derived file rehash 13/13; fingerprint and catalyst prof
 A033	2026-11-27	P1A.04I	R06 uppercase S filename confirmed; original size and SHA256 verified; temporary in-memory filename correction; no source mutation	R06_INTEGRITY_PASS
 A034	2026-11-27	P1A.04I	User retry completed 5.64 s; 682 GO occurrences match 669 events; 614 equal and 68 subset catalytic inventories; all cite same event; numeric R06 event count 14821	CROSS_SOURCE_ROLE_AUDIT_PASS
 A035	2026-11-27	P1A.04J	Read-only publication count reconciliation and assertion-level evidence audit prepared; execution pending	PENDING
+A036	2026-11-27	P1A.04J	User reported audit PASS in 19.10 s; direct BP PMID 15701 events; numeric R06 14821; all R06 sets contained in BP; 4057 other namespace GO PMIDs, 737 overlap	PROVENANCE_AUDIT_PASS
+A037	2026-11-27	P1A.04K	Read-only nested composition and role-specific scope feasibility audit prepared; execution pending	PENDING

@@ -11,3 +11,4 @@ L009	P1A	Molecular state fingerprints do not establish full biochemical equivale
 L010	P1A	Composition taxon unions do not establish feasible human AND OR combinations	Role-specific scope audit; retain mixed and unknown contexts	OPEN
 L011	1	Raw material projection dominated by common molecules	Retain molecules; compare degree-aware projections and typed incidence nulls	OPEN
 L012	P1A	GO-CAM imported and inferred evidence may duplicate Reactome; historical ontology versions uncertain	Pinned interpretation references and evidence dependence audit	OPEN
+L013	P1A	Publication references are incomplete and correlated; PMID overlap does not identify independent experiments	Retain assertion-level evidence and source links; publication-aware sensitivity analyses; no evidence weights yet	OPEN
