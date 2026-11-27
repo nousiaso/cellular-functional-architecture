@@ -31,3 +31,4 @@ A028	2026-11-27	P1A.04G	User reported audit complete in 49.27 s; 61418 entities,
 A029	2026-11-27	P1A.04H	Source-local state catalogue and fingerprint candidate construction prepared; execution pending	PENDING
 A030	2026-11-27	P1A.04H	User reported state catalogue PASS in 62.96 s; 61418 states; 60911 fingerprints; 440 candidate groups; 947 grouped records; no merges	STATE_CATALOGUE_PASS
 A031	2026-11-27	P1A.04I	Derived manifest rehash and source overlap role diagnostic prepared; execution pending	PENDING
+A032	2026-11-27	P1A.04I	Derived file rehash 13/13; fingerprint and catalyst profiles and stoichiometry review completed; R06 expected file path raised FileNotFoundError before GO crosswalk; local diagnostic required	PARTIAL_PASS_R06_PATH_FAILURE
