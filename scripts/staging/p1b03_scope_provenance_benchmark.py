@@ -209,22 +209,35 @@ def build(out,idx):
         if e not in eco:return False
         if e=="ECO:0000313" or "imported information" in " ".join(eco[e].get("name",[])).lower():return True
         return any(eco_import(x.split()[0]) for x in eco[e].get("is_a",[]))
-    bp_pmids=defaultdict(set);pub_counts=Counter()
+    bp_pmids=defaultdict(set);pub_counts=Counter();event_pub_pairs=set();event_pub_ns=Counter()
     with ExitStack() as stack:
         def w(name,cols):
             f=stack.enter_context((out/name).open("w",encoding="utf-8",newline=""))
             a=csv.writer(f,delimiter="\t",lineterminator="\n");a.writerow(cols.split("\t"));return a
-        pw=w("bp_publication_links.tsv","owner_id\towner_class\txref_id\trecord_ordinal\tproperty_ordinal\tnamespaces_json\tidentifiers_json")
+        pw=w("bp_publication_links.tsv","owner_id\towner_class\txref_id\trecord_ordinal\tproperty_ordinal\tnamespaces_json\tidentifiers_json\tpublication_identity_status")
         for e in sorted(owners):
             if classes[e] not in EVENT|CONTROL:continue
             for x,ord_,j in owners[e]:
                 if x not in xrefs or xrefs[x][0]!="PublicationXref":continue
                 _,ns,ii=xrefs[x]
-                pw.writerow([bp(e),classes[e],bp(x),ord_,j,js(ns),js(ii)])
-                pub_counts["event" if e in ops else "control"]+=1
+                kind="event" if e in ops else "control"
+                status=("namespace_and_identifier_recorded" if ns and ii else
+                        "partial_identity_fields" if ns or ii else "missing_namespace_and_identifier")
+                pw.writerow([bp(e),classes[e],bp(x),ord_,j,js(ns),js(ii),status])
+                pub_counts[kind]+=1
+                pub_counts[kind+"_"+status]+=1
+                if e in ops:
+                    event_pub_pairs.add((e,x))
+                    event_pub_ns[tuple(sorted(map(str,ns)))]+=1
                 if any(isinstance(a,str) and a.lower()=="pubmed" for a in ns):
                     bp_pmids[e].update(a for a in ii if isinstance(a,str) and re.fullmatch(r"[0-9]+",a))
-        need(pub_counts["event"]==59951,"native direct event publication count")
+        emit("BP_PUBLICATION_COUNTS",dict(pub_counts),"unique_event_xref_pairs",len(event_pub_pairs),
+             "event_namespaces",sorted(event_pub_ns.items()))
+        need(pub_counts["event"]==len(event_pub_pairs)==60015,"native event publication occurrence/pair count")
+        need(pub_counts["event_namespace_and_identifier_recorded"]==59951 and
+             pub_counts["event_missing_namespace_and_identifier"]==64 and
+             pub_counts["event_partial_identity_fields"]==0,"publication identity coverage")
+        need(dict(event_pub_ns)=={("Pubmed",):59811,("ISBN",):140,():64},"event publication namespace profile")
         bp_pmids={e:s for e,s in bp_pmids.items() if s}
         evpub={e:s for e,s in bp_pmids.items() if e in ops}
         need(len(evpub)==15701 and all(r06[e]<=evpub.get(e,set()) for e in r06),"BP R06 coverage")
@@ -306,7 +319,7 @@ def build(out,idx):
         "pathway_stable_identity_cardinality":dict(Counter(str(len(x)) for x in pid.values())),
         "native_R09_hierarchy_equal_pairs":len(native_hierarchy&exported_hierarchy),
         "native_hierarchy_only":len(native_hierarchy-exported_hierarchy),"R09_only":len(exported_hierarchy-native_hierarchy),
-        "pathway_coverage":dict(cov),"R04_disease_context":dict(dis),"BP_publication_links":dict(pub_counts),
+        "pathway_coverage":dict(cov),"R04_disease_context":dict(dis),"BP_publication_links":dict(pub_counts),"BP_event_unique_publication_pairs":len(event_pub_pairs),
         "BP_events_with_PMIDs":len(evpub),"R06_numeric_events":len(r06),"state_scope":dict(state_counts),
         "event_catalyst_profiles":dict(cat_counts),"event_scope_strata":dict(scope_counts),
         "foreign_required_catalyst_with_human_leaf":foreign_human,"GO_activity_profiles":dict(ac),
