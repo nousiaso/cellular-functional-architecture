@@ -29,3 +29,4 @@ A093	2026-11-27	P1D.02	User reported finite-sweep pilot PASS; 12 chains; final r
 A094	2026-11-27	P1D.03	Targeted exact and candidate molecular duplicate/evidence grouping, disjoint-role capacity and environment inspection prepared	PENDING
 A095	2026-11-27	P1D.03	User reported PASS; exact duplicate groups 24/49 operations and candidate fingerprint groups 36/75; combined largest component 4968; disjoint role target/assignment capacity measured; base graph-tool unavailable	FEASIBILITY_PASS
 A096	2026-11-27	P1D.04	Existing-environment scan and synthetic typed degree-corrected layered SBM smoke implemented; optional separate environment requires explicit installation permission	PENDING
+A097	2026-11-27	P1D.04	User reported installation and imports PASS; graph-tool 3.9 synthetic 240 vertices 5248 edges; constructor rejected int32 block property b; environment retained, exact package receipt not written; read-only API diagnostic required	SMOKE_FAILED_API_TYPE
