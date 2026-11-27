@@ -41,3 +41,5 @@ A038	2026-11-27	P1A.04K	User reported self-test and derived rehash PASS; 3.81 s;
 A039	2026-11-27	P1A.04L	Targeted scope exception and identity intake diagnostic prepared; execution pending	PENDING
 A040	2026-11-27	P1A.04L	User reported audit PASS in 3.77 s; 256 foreign-dependent events; 41 catalytic occurrences with human protein; HGNC exact 322 parent candidates 107 no candidate 91	SCOPE_EXCEPTION_AUDIT_PASS
 A041	2026-11-27	P1A.04M	Small UniProt identity and release-header pilot prepared; execution pending	PENDING
+A042	2026-11-27	P1A.04M	User reported 7/7 reviewed entries; release 2026_04 04-November-2026; 2 exact isoforms and 1 exact processed chain; 6 human and 1 Zika virus	UNIPROT_IDENTITY_PILOT_PASS
+A043	2026-11-27	P1A.04N	Release-checked targeted UniProt acquisition prepared; plan and execution pending	PENDING
