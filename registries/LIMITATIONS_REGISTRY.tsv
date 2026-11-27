@@ -15,3 +15,4 @@ L013	P1A	Publication references are incomplete and correlated; PMID overlap does
 L014	P1A	Foreign-dependent human immune machinery and disease-associated failed reactions may be misclassified by simplistic scope rules	Trace role-specific molecular composition and context; preserve source assertions and uncertainty	OPEN
 L015	P1A	HGNC parent mappings cannot establish exact protein isoform or processed-chain identity	Targeted UniProt identity and feature verification; retain unresolved tokens	OPEN
 L016	P1A	Historical inactive and demerged UniProt identifiers may lack unique active molecular identity	Preserve original response and candidate successor links; require contextual review before resolution	OPEN
+L017	P1A	Chemical identifiers and ontology classes may describe different protonation states or levels of structural specificity	Preserve exact source states; audit identifier coverage and crossrefs without hierarchy-based merging	OPEN
