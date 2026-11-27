@@ -67,3 +67,4 @@ A064	2026-11-27	P1A.04U	User reported source receipt and scope preflight PASS; 1
 A065	2026-11-27	P1A.05	Consolidated source representation policy and provider licensing review prepared; local manifest candidate builder pending execution and review	REVIEW_REQUIRED
 A066	2026-11-27	P1A.05	User reported manifest builder PASS at 2abc36d; 2085 rows, 19 core sources, 1520 GO models, 521 unique UniProt parents; manifest and candidate checksums agree; explicit policy approval pending	TECHNICAL_PASS_NOT_FROZEN
 A067	2026-11-27	P1A.05	User explicitly approved consolidated Part 1A source and representation policy including limitations; historical candidate commit and hashes recorded in P1A_SOURCE_LOCK_V1.json	FROZEN_APPROVED
+A068	2026-11-27	P1B.01	Source-scoped harmonization build prepared; verifies historical source lock and compact tables; reconstructs GO typed assertions and retains native control provenance; execution pending	PENDING
