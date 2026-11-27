@@ -37,3 +37,5 @@ A034	2026-11-27	P1A.04I	User retry completed 5.64 s; 682 GO occurrences match 66
 A035	2026-11-27	P1A.04J	Read-only publication count reconciliation and assertion-level evidence audit prepared; execution pending	PENDING
 A036	2026-11-27	P1A.04J	User reported audit PASS in 19.10 s; direct BP PMID 15701 events; numeric R06 14821; all R06 sets contained in BP; 4057 other namespace GO PMIDs, 737 overlap	PROVENANCE_AUDIT_PASS
 A037	2026-11-27	P1A.04K	Read-only nested composition and role-specific scope feasibility audit prepared; execution pending	PENDING
+A038	2026-11-27	P1A.04K	User reported self-test and derived rehash PASS; 3.81 s; H 55616 F 2527 U 3275; 256 F catalyst events; 520 unresolved GO enabler accessions	SCOPE_FEASIBILITY_AUDIT_PASS
+A039	2026-11-27	P1A.04L	Targeted scope exception and identity intake diagnostic prepared; execution pending	PENDING
