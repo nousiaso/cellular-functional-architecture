@@ -32,3 +32,5 @@ A096	2026-11-27	P1D.04	Existing-environment scan and synthetic typed degree-corr
 A097	2026-11-27	P1D.04	User reported installation and imports PASS; graph-tool 3.9 synthetic 240 vertices 5248 edges; constructor rejected int32 block property b; environment retained, exact package receipt not written; read-only API diagnostic required	SMOKE_FAILED_API_TYPE
 A098	2026-11-28	P1D.04	Initial interactive diagnostic timed out; direct Python single-thread diagnostic passed explicit int64 property maps and typed optimization; import 46.51 s, total 46.80 s	API_DIAGNOSTIC_PASS
 A099	2026-11-28	P1D.04	Patch verified property types and direct project-only execution; package receipt after successful larger planted synthetic test; execution pending	PENDING
+A100	2026-11-28	P1D.04	User reported planted synthetic PASS; 2 operation and 2 state blocks each purity 1; DL 16779.133 to 14548.424; explicit receipt d6c476b68def958d8140d901ab896119630b9a00b401600f1a98b350d9d7eacc	BACKEND_PASS
+A101	2026-11-28	P1D.05	Full-scale finite-sweep N2/N3 randomized role workloads and separate fixed-composition workload prepared; no observed fit or saved partitions	PENDING
