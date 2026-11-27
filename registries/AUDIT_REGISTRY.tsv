@@ -29,3 +29,5 @@ A026	2026-11-27	P1A.04F	User reported typed layer PASS in 37.96 s; 16187 BP even
 A027	2026-11-27	P1A.04G	Read-only molecular state composition stoichiometry and raw bridge diagnostic prepared; execution pending	PENDING
 A028	2026-11-27	P1A.04G	User reported audit complete in 49.27 s; 61418 entities, zero composition cycles, depth 13, 44489 positive stoichiometries, 345409 raw nonself flow pair occurrences	STATE_COMPOSITION_AUDIT_PASS
 A029	2026-11-27	P1A.04H	Source-local state catalogue and fingerprint candidate construction prepared; execution pending	PENDING
+A030	2026-11-27	P1A.04H	User reported state catalogue PASS in 62.96 s; 61418 states; 60911 fingerprints; 440 candidate groups; 947 grouped records; no merges	STATE_CATALOGUE_PASS
+A031	2026-11-27	P1A.04I	Derived manifest rehash and source overlap role diagnostic prepared; execution pending	PENDING
