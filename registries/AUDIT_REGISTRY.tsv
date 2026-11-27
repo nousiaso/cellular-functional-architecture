@@ -49,3 +49,5 @@ A046	2026-11-27	P1A.04N	User reported 490 parent receipts complete; 73 reused 41
 A047	2026-11-27	P1A.04O	Read-only identity inventory reconstruction and downstream coverage audit prepared; execution pending	PENDING
 A048	2026-11-27	P1A.04O	User reported full 490 receipt and 520 token reconstruction PASS; 429 equal unique HGNC mappings; 7908 GO accession occurrences with one unresolved; chemical reference inventory recorded	IDENTITY_COVERAGE_AUDIT_PASS
 A049	2026-11-27	P1A.04P	Chemical reference inventory and monthly ChEBI snapshot acquisition audit prepared; execution pending	PENDING
+A050	2026-11-27	P1A.04P	User reported ChEBI release 257 acquired; 2233/2233 exact active union IDs; BP 2026 GO 888 shared 681; SHA256 recorded	CHEMICAL_REFERENCE_AUDIT_PASS
+A051	2026-11-27	P1A.04Q	Read-only state correspondence and participant identity gap audit prepared; execution pending	PENDING
