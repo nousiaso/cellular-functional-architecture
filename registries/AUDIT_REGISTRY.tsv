@@ -27,3 +27,5 @@ A091	2026-11-27	P1D.01	User reported PASS; native largest component 15292, compo
 A092	2026-11-27	P1D.02	Finite-sweep multi-chain diagnostic and illustrative publication-group holdout feasibility prepared; execution pending	PENDING
 A093	2026-11-27	P1D.02	User reported finite-sweep pilot PASS; 12 chains; final retention N0/N1/N2/N3 approximately 0.68/8.04/18.88/56.73 percent; publication-group holdout 3148-3149, 808-927 test operations with no shared exact role-state features	FEASIBILITY_PASS
 A094	2026-11-27	P1D.03	Targeted exact and candidate molecular duplicate/evidence grouping, disjoint-role capacity and environment inspection prepared	PENDING
+A095	2026-11-27	P1D.03	User reported PASS; exact duplicate groups 24/49 operations and candidate fingerprint groups 36/75; combined largest component 4968; disjoint role target/assignment capacity measured; base graph-tool unavailable	FEASIBILITY_PASS
+A096	2026-11-27	P1D.04	Existing-environment scan and synthetic typed degree-corrected layered SBM smoke implemented; optional separate environment requires explicit installation permission	PENDING
