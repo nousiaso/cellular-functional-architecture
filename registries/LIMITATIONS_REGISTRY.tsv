@@ -6,7 +6,7 @@ L004	1	Projection induces dependent edges	Native incidence nulls and evidence-bl
 L005	1	Graph connectivity does not establish physiological task performance	Independent validation in Part 4	OPEN
 L006	1	Historical annotation leakage into validation	Version audit; distinguish retrospective and prospective evidence	OPEN
 L007	1	Unknown reaction constraints and stoichiometry	Retain missingness; no flux claims	OPEN
-L008	1	Historical and current source schemas unverified locally	Inspect actual downloads before parser design	OPEN
+L008	1	Historical release schemas not yet verified	Inspect actual historical snapshots before parser design	OPEN
 L009	P1A	Molecular state fingerprints do not establish full biochemical equivalence; missing modification details propagate	Retain source states and audit candidate groups before any merge	OPEN
 L010	P1A	Composition taxon unions do not establish feasible human AND OR combinations	Role-specific scope audit; retain mixed and unknown contexts	OPEN
 L011	1	Raw material projection dominated by common molecules	Retain molecules; compare degree-aware projections and typed incidence nulls	OPEN
@@ -19,7 +19,6 @@ L017	P1A	Chemical identifiers and ontology classes may describe different proton
 L018	P1A	GO molecular participants have sparse direct location annotation and identity coverage differs from enablers	Audit exact participant identities and location correspondence; keep context uncertainty rather than impute	OPEN
 L019	P1A	Chemical external xrefs may be sparse or ambiguous and structural descriptions may be generic	Retain source-specific identity; candidate-only crossrefs and strict versus expanded connectivity sensitivity	OPEN
 L020	P1A	Protein-to-gene ambiguity and unspecified complex membership can inflate gene counts or misrepresent required components	Keep candidate sets and molecular units separate; later gene mapping sensitivity and missing-component flags	OPEN
-L021	P1A	V1 regulatory comparison used incorrect serialized control-type comparisons	V2 parser fixtures and full cross-format comparison passed; v1 results preserved historically	RESOLVED
 L022	P1A	Native graph dump semantic verification not performed; SBML template material semantics and unrecorded coefficients not certified	Use verified BioPAX as primary and SBML as dependent comparison; retain limitations and deferred artifacts explicitly	OPEN
 L023	1	Curated topology encodes prior functional organization even without labels	Primary precedence exclusion; pathway-conditioned baselines and overlap-aware nulls	OPEN
 L024	1	Statistical blocks and aggregated paths do not establish coherent functional assemblies	Require operation-level molecular witnesses and flag incomplete requirements	OPEN

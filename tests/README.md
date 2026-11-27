@@ -1,1 +1,3 @@
-Planned fixtures: compartment mismatch; protein state mismatch; reversible reaction; required complex versus alternatives; missing stoichiometry; currency metabolite; signed regulation; duplicated evidence; native-to-projected edge provenance. No tests implemented yet.
+# Tests
+
+Current scripts include stage-specific acceptance checks and synthetic fixtures where implemented. Run the relevant self-test and inspect full batch output before marking a stage PASS. No independent end-to-end test suite yet. Do not treat code preparation as certification.

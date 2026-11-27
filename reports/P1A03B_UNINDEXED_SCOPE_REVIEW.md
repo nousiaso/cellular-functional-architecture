@@ -1,5 +1,0 @@
-# P1A.03B seven unindexed GO-CAM models: preliminary review
-
-User-reported bounded read-only cluster retrieval from the August 5 2026 release: 7/7 parsed; internal IDs match gomodel:<filename ID>; all model taxon fields null; all status production. 45 raw activity entries total. Titles suggest six fungal biosynthesis models and one gut microbial cholate-to-deoxycholate model with human context. Titles are not entity-level taxonomic evidence.
-
-The seven are inventoried separately in manifests/P1A03B_UNINDEXED_SCOPE_REVIEW.tsv, held outside the current 1520 human-indexed candidate acquisition (not permanently excluded from future analyses). No claims of human completeness beyond the index. The 126 multitaxon indexed models remain included as candidates. Entity and activity taxonomy/provenance inspection is required to resolve the held models, especially the host-microbiome model. No individual model payloads or checksums were retained by the diagnostic. Proceed with cross-namespace pilot of the existing 1520 candidate set; no acquisition script changes needed. Full transfer remains pending actual pilot output. 
