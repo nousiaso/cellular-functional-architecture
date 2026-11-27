@@ -61,3 +61,5 @@ A058	2026-11-27	P1A.04T	User reported run ongoing after F/H manifest checks; sta
 A059	2026-11-27	P1A.04T	User reported full SBML comparison complete; 16187 events and 160266 species occurrences matched; material/catalyst sets and 4400 explicit coefficients agree; regulatory comparison invalidated by code inspection	CORE_COMPARISON_PASS_REGULATORY_REVIEW_REQUIRED
 A060	2026-11-27	P1A.04T_v2	Corrected JSON control-type decoding; direct-control preflight and full recheck prepared; execution pending	PENDING
 A061	2026-11-27	P1A.04T_v2	User reported parser fixtures and direct control preflight PASS; 10145 direct event targets; positive 1641 and negative 872 affected events; full corrected batch job submitted and running	PREFLIGHT_PASS_FULL_COMPARISON_PENDING
+A062	2026-11-27	P1A.04T_v2	User reported full corrected comparison PASS: all comparable role sets and 4400 coefficients equal; SLURM exit 0; wall 3428 s CPU 37.263 s peak Python RSS 538.1 MiB	FULL_CROSS_FORMAT_COMPARISON_PASS
+A063	2026-11-27	P1A.04U	Source receipt and disease ancestry preflight prepared; execution pending	PENDING
