@@ -2,7 +2,7 @@
 
 **Goal:** discover complementary molecular assemblies beyond existing pathway organization, then test whether they correspond to independently derived cellular programmes and measured functions in human macrophages, fibroblasts and endothelial cells.
 
-**Status:** Part 1A source lock approved; Part 1B.01 implementation ready, execution result pending. Inference direction v0.3.0 approved; algorithms and confirmatory thresholds not frozen.
+**Status:** Part 1A source lock approved; Part 1B.01 passed; Part 1B.02 compatibility feasibility in progress. Inference direction v0.3.0 approved; algorithms and confirmatory thresholds not frozen.
 
 ## Design
 1. Preserve molecular states, operations, typed roles, composition and provenance.
@@ -27,15 +27,5 @@ A statistical module is not a function. Curated topology is not function-blind. 
 | [Scripts](scripts/README.md) | Runnable stages and retained dependencies |
 | [Registries](registries/) | Current decisions, hypotheses, milestones and open limitations |
 
-## Next execution
-From repository root on the cluster, after checking no identical job is running and no completed output exists:
-
-```bash
-git pull --ff-only origin main
-mkdir -p logs
-sbatch --job-name=cfa_p1b01 --cpus-per-task=1 --mem=4G --time=01:00:00 \
-  scripts/slurm/run_python_stage.sbatch \
-  scripts/staging/p1b01_source_scoped_harmonization.py --execute
-```
-
-If already executed, inspect existing stdout/stderr and manifest instead of rerunning. Raw data, results and logs stay outside Git. The approved source lock relies on historical Git objects: use a full clone (not a shallow snapshot).
+## Execution
+Part 1B.01 completed successfully; do not rerun. See the certification report for its manifest fingerprint and counts. Next: bounded read-only compatibility diagnostics on the actual state/composition records before implementing 1B.02. Run substantial processing through the SLURM wrapper from repository root. Raw data, results and logs stay outside Git. The approved source lock relies on historical Git objects: use a full clone (not a shallow snapshot).

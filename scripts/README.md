@@ -1,6 +1,6 @@
 # Scripts
 
-Active next stage: `staging/p1b01_source_scoped_harmonization.py --execute` via `slurm/run_python_stage.sbatch`. See root README. Standard Python only; output is atomic and no overwrite. Inspect actual logs before proceeding.
+`staging/p1b01_source_scoped_harmonization.py --execute` passed via `slurm/run_python_stage.sbatch`. Preserve its output. Next: read-only 1B.02 feasibility; implementation follows actual diagnostic results. Standard Python only; output is atomic and no overwrite.
 
 Retained acquisition and staging scripts reconstruct source records and derived tables. Diagnostic modules retained where imported by active scripts or needed for next provenance materialization. Some contain standalone audits as well as shared helpers; keep their paths stable. Do not rerun acquisition against mutable endpoints to reconstruct the frozen snapshot: use existing verified receipts. The historical candidate builder and one-off certification diagnostics are recoverable from pre-cleanup commit 2c7a2dfa2fdee19d53b382adc026080bd0809365 in a separate checkout; the approved source lock is not regenerated.
 
