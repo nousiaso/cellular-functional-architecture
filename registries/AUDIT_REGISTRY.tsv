@@ -51,3 +51,5 @@ A048	2026-11-27	P1A.04O	User reported full 490 receipt and 520 token reconstruct
 A049	2026-11-27	P1A.04P	Chemical reference inventory and monthly ChEBI snapshot acquisition audit prepared; execution pending	PENDING
 A050	2026-11-27	P1A.04P	User reported ChEBI release 257 acquired; 2233/2233 exact active union IDs; BP 2026 GO 888 shared 681; SHA256 recorded	CHEMICAL_REFERENCE_AUDIT_PASS
 A051	2026-11-27	P1A.04Q	Read-only state correspondence and participant identity gap audit prepared; execution pending	PENDING
+A052	2026-11-27	P1A.04Q	User reported compute-node audit PASS; 149 exact chemical ID and location matches of 3346 GO records; 45 additional UniProt tokens in 91 participant occurrences	STATE_CORRESPONDENCE_AUDIT_PASS
+A053	2026-11-27	P1A.04R	Remaining participant identity acquisition and chemical xref candidate audit prepared; plan and execution pending	PENDING
