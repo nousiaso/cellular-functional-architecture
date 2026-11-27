@@ -35,3 +35,5 @@ User-reported diagnostic: 40,083 AND links (34,916 equal and 5,167 different sou
 
 ## Part 1B.03 — preflight
 Sequential BioPAX XML scan and GO evidence summary completed in 7.66 s (548,688 records). Native pathwayComponent: 17,063 biochemical, 20 degradation, 8 template and 2,905 subpathway records; pathwayOrder 19,996. GO association evidence: 22 ECO terms, 316 assertions without evidence codes. Use sequential extraction rather than SQLite random joins. Native membership coverage and stable-ID reconciliation to be measured in full 1B.03; R04 alone covers 15,771 events. Execution pending.
+
+P1B.03 initial execution stopped after successful input verification: parser incorrectly rejected the empty rdf:about on the first OWL Ontology metadata record. Read-only diagnostic confirmed 548,688 unique normalized identifiers, exactly one empty ontology identifier and no duplicates. Corrected parser retains this specific declaration and its ordinal; missing molecular IDs and duplicates still fail. Rerun pending; no prior-stage changes.

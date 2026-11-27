@@ -24,6 +24,7 @@ B02_HASH="ba2ee290a9aeac833721b72a321273f8be64dd54dd0c47fbbcd7ce4b6d0cbbec"
 RDF="{http://www.w3.org/1999/02/22-rdf-syntax-ns#}"
 XML="{http://www.w3.org/XML/1998/namespace}"
 BP="{http://www.biopax.org/release/biopax-level3.owl#}"
+OWL_ONTOLOGY="{http://www.w3.org/2002/07/owl#}Ontology"
 STABLE=re.compile(r"R-[A-Z]+-[0-9]+")
 EVENT={"BiochemicalReaction","Degradation","TemplateReaction"}
 CONTROL={"Catalysis","Control","TemplateReactionRegulation"}
@@ -41,7 +42,24 @@ def evidence_terms(x):
         return {str(v.get("term","missing")) for v in x if isinstance(v,dict)}
     return set()
 
+def validate_id(a,tag,ordinal,rid,about,classes):
+    # The frozen source contains one empty rdf:about on its initial OWL
+    # ontology declaration. Preserve this record and its ordinal.
+    metadata=(a=="" and ordinal==1 and tag==OWL_ONTOLOGY and rid is None and about=="")
+    need((bool(a) or metadata) and a not in classes,
+         "duplicate/missing BP ID ordinal="+str(ordinal)+" tag="+tag+" id="+repr(a))
+    return metadata
+
 def self_test():
+    need(validate_id("",OWL_ONTOLOGY,1,None,"",{}),"empty ontology metadata")
+    need(not validate_id("Protein1",BP+"Protein",2,"Protein1",None,{}),"ordinary BP ID")
+    for args in (("",BP+"Protein",2,None,"",{}),
+                 (None,BP+"Protein",2,None,None,{}),
+                 ("Protein1",BP+"Protein",3,"Protein1",None,{"Protein1":"Protein"}),
+                 ("",OWL_ONTOLOGY,2,None,"",{})):
+        try:validate_id(*args)
+        except RuntimeError:pass
+        else:raise RuntimeError("invalid BP ID accepted in fixture")
     need(all_of(["H","F"])=="F" and any_of(["F","H"])=="H","composition logic")
     need(list(references({"a":[{"reference":"PMID: 1"}]}))==["PMID: 1"],"nested references")
     need(norm_pmid("PMID: 1")=="1","PMID")
@@ -77,7 +95,8 @@ def scan(path):
             if len(stack)==2:
                 ordinal+=1
                 a=norm(e.get(RDF+"ID") or e.get(RDF+"about"));cl=e.tag.split("}")[-1]
-                need(a and a not in classes,"duplicate/missing BP ID")
+                if validate_id(a,e.tag,ordinal,e.get(RDF+"ID"),e.get(RDF+"about"),classes):
+                    emit("BIOPAX_EMPTY_ONTOLOGY_METADATA_RETAINED",ordinal)
                 classes[a]=cl
                 if cl in ("UnificationXref","PublicationXref"):
                     xrefs[a]=(cl,[c.text for c in e if c.tag==BP+"db"],[c.text for c in e if c.tag==BP+"id"])
@@ -92,7 +111,7 @@ def scan(path):
                 stack[-2].remove(e);e.clear()
                 if ordinal%100000==0:emit("BIOPAX_SEQUENTIAL_RECORDS",ordinal)
             stack.pop()
-    need(len(classes)==548688,"BP record count")
+    need(len(classes)==548688 and classes.get("")=="Ontology","BP record count/ontology metadata")
     return classes,links,xrefs,owners,names
 
 def build(out,idx):

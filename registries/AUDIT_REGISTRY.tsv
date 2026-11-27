@@ -9,3 +9,5 @@ A073	2026-11-27	P1B.02	Factored compatibility and identity catalogue implemented
 A074	2026-11-27	P1B.02	User reported PASS; 40324 OR terminal pairs (39627 supported location, 697 uncertain), 10062 complex production candidates, human reference gene counts reproduced; no graph edges merges or filters; manifest ba2ee290a9aeac833721b72a321273f8be64dd54dd0c47fbbcd7ce4b6d0cbbec	PASS
 A075	2026-11-27	P1B.03	User reported sequential BioPAX preflight 7.66 s; 17091 operation memberships, 2905 pathway relations, 19996 pathway-step records; 22 GO ECO terms and 316 assertions without terms	PREFLIGHT_PASS
 A076	2026-11-27	P1B.03	Sequential source scope provenance and pathway benchmark implementation prepared; execution pending	PENDING
+A077	2026-11-27	P1B.03	First execution stopped on empty BP ID after frozen inputs verified; user diagnostic found exactly one empty rdf:about on initial OWL Ontology declaration and zero duplicates among 548688 records	PARSER_DEFECT_CONFIRMED
+A078	2026-11-27	P1B.03	Narrow identifier exception for exact ontology declaration; preserve ordinal and count; positive/negative fixtures added; rerun pending	PENDING
