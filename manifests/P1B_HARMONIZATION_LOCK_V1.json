@@ -1,0 +1,37 @@
+{
+  "schema_version": "P1B_LOCK_v1",
+  "status": "FROZEN_APPROVED",
+  "approval_date": "2026-11-27",
+  "approval_text": "yes approve part 1b freeze and proceed to 1c",
+  "review_commit": "41b5e14835bec05f3a79e911542d2c512764c118",
+  "certificate_execution_commit": "b38424ee4a0aacaf9494be16aa6af72d11bff181",
+  "certificate_stage_sha256": "7cfcccfdbd8830b72e88965209bcfb877deab348ca66590605c5e83b7ca65a3f",
+  "source_lock": "manifests/P1A_SOURCE_LOCK_V1.json",
+  "manifests": [
+    {
+      "path": "results/P1B01_SOURCE_SCOPED_HARMONIZATION_V1/manifest.json",
+      "sha256": "bb532cdca6d16e6357d06d3e76de6054275c44346c638680a1cfdbba6bcec714"
+    },
+    {
+      "path": "results/P1B02_MOLECULAR_COMPATIBILITY_V1/manifest.json",
+      "sha256": "ba2ee290a9aeac833721b72a321273f8be64dd54dd0c47fbbcd7ce4b6d0cbbec"
+    },
+    {
+      "path": "results/P1B03_SCOPE_PROVENANCE_BENCHMARK_V1/manifest.json",
+      "sha256": "953f8eae0970ea86b7f4fae300d7b9015a0956e98cd3b61647a8882a6a503d28"
+    },
+    {
+      "path": "results/P1B04_HARMONIZATION_CERTIFICATE_V1/manifest.json",
+      "sha256": "82fc4ac1213edcfe4ea68c6b447870ea5e2027da9379f9276b52ef1be1bf6c7a"
+    }
+  ],
+  "scope": "Certified source-scoped catalogue, molecular candidates and recorded annotations",
+  "approved_design": "protocol/PART1_MATHEMATICAL_PROTOCOL.md v0.3.0",
+  "implementation_choices_pending": [
+    "admissible scope views",
+    "projection weights",
+    "evidence split feasibility",
+    "likelihood and model implementation",
+    "confirmatory thresholds"
+  ]
+}
