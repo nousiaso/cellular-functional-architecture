@@ -13,3 +13,5 @@ A077	2026-11-27	P1B.03	First execution stopped on empty BP ID after frozen input
 A078	2026-11-27	P1B.03	Narrow identifier exception for exact ontology declaration; preserve ordinal and count; positive/negative fixtures added; rerun pending	PENDING
 A079	2026-11-27	P1B.03	Second execution passed full XML scan but publication count check failed; diagnostic established 60015 unique event publication xref pairs including 64 without db/id, 59811 Pubmed and 140 ISBN; 15701 events with numeric PMIDs	COUNT_DEFINITION_RECONCILED
 A080	2026-11-27	P1B.03	Preserve all publication occurrences and explicit identity status; certify raw count and historical identifiable subset separately; numeric PMID grouping unchanged	PATCHED_PENDING_EXECUTION
+A081	2026-11-27	P1B.03	User reported PASS; native membership all 16187 operations, 416 recovered; 2889 unique pathway IDs and 2905 matching hierarchy pairs; 60015 publication pairs; GO candidate 5573; manifest 953f8eae0970ea86b7f4fae300d7b9015a0956e98cd3b61647a8882a6a503d28	PASS
+A082	2026-11-27	P1B.04	Cross-table certification and native disease annotation implemented; execution and review pending	PENDING
