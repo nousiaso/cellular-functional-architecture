@@ -58,3 +58,5 @@ A055	2026-11-27	P1A.04S	Consolidated residual identity and SBML schema preflight
 A056	2026-11-27	P1A.04S	User reported reconstruction PASS; 43/44 concordant human HGNC, 11682 BP human references audited; 65 complex activities lack recorded parts; 2889 SBML files sampled	REMAINING_IDENTITY_FORMAT_PREFLIGHT_PASS
 A057	2026-11-27	P1A.04T	Full SBML export comparison prepared; execution pending	PENDING
 A058	2026-11-27	P1A.04T	User reported run ongoing after F/H manifest checks; stage timing and memory logging added; reusable SLURM batch wrapper prepared; execution and resource profiling pending	RUNNING_NOT_CERTIFIED
+A059	2026-11-27	P1A.04T	User reported full SBML comparison complete; 16187 events and 160266 species occurrences matched; material/catalyst sets and 4400 explicit coefficients agree; regulatory comparison invalidated by code inspection	CORE_COMPARISON_PASS_REGULATORY_REVIEW_REQUIRED
+A060	2026-11-27	P1A.04T_v2	Corrected JSON control-type decoding; direct-control preflight and full recheck prepared; execution pending	PENDING

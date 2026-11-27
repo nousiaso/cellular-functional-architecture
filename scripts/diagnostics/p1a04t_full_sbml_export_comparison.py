@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Full SBML/BioPAX export comparison; no merging or source changes."""
+import argparse
 from collections import Counter,defaultdict
 from decimal import Decimal
 import json
@@ -84,12 +85,65 @@ def resolve(ids,num,stable,internal,allowed):
     hit=st&it if st and it else st or it
     if len(hit)==1:return next(iter(hit)),"direct_stable" if st else "release_numeric_candidate"
     return None,"ambiguous" if hit else "unmapped"
+def control_role(x):
+    values=json.loads(x["control_type"])
+    need(isinstance(values,list) and all(isinstance(v,str) for v in values),"control type JSON schema")
+    need(len(values)==1 and values[0] in ("ACTIVATION","INHIBITION"),"unexpected control type "+str(x))
+    if x["class"]=="Catalysis":
+        need(values==["ACTIVATION"],"unexpected catalysis sign")
+        return "catalyst"
+    need(x["class"] in ("Control","TemplateReactionRegulation"),"unexpected control class")
+    return "positiveregulator" if values[0]=="ACTIVATION" else "negativeregulator"
+def load_direct_controls(allowed_events):
+    controls={x["rdf_id"]:x for x in rows(TYPED/"biopax_control_records.tsv")}
+    ctr=defaultdict(set);target=defaultdict(set)
+    for x in rows(TYPED/"biopax_incidence.tsv"):
+        if x["layer"]=="controller_of_record":ctr[x["target_id"]].add(x["source_id"])
+        elif x["layer"]=="controlled_by_record":target[x["source_id"]].add(x["target_id"])
+    roles=defaultdict(lambda:defaultdict(set))
+    types=Counter();topology=Counter();legacy=Counter();indirect_examples=[]
+    for c,x in controls.items():
+        z=control_role(x)
+        types[(x["class"],z)]+=1
+        old="catalyst" if x["class"]=="Catalysis" else "positiveregulator" if x["control_type"]=="ACTIVATION" else "negativeregulator" if x["control_type"]=="INHIBITION" else "other_modifier"
+        legacy[(old,z)]+=1
+        for e in target[c]:
+            k="event" if e in allowed_events else "control_record" if e in controls else "other"
+            topology[(x["class"],z,k)]+=1
+            if k=="event":roles[e][z].update(ctr[c])
+            elif len(indirect_examples)<15:indirect_examples.append((c,z,e,sorted(ctr[c])))
+    emit("CONTROL_TYPES_DECODED",sorted(types.items()))
+    emit("LEGACY_VS_CORRECTED_ROLE",sorted(legacy.items()))
+    emit("CONTROL_TARGET_TOPOLOGY",sorted(topology.items()))
+    emit("NON_EVENT_CONTROL_TARGET_EXAMPLES",indirect_examples)
+    for z in ("catalyst","positiveregulator","negativeregulator"):
+        n=sum(bool(v.get(z)) for v in roles.values())
+        pairs=sum(len(v.get(z,set())) for v in roles.values())
+        emit("BP_DIRECT_ROLE_COVERAGE",z,"events",n,"event_controller_pairs",pairs)
+    return roles
+def self_test():
+    for cl,z,v in (("Control","positiveregulator","ACTIVATION"),("Control","negativeregulator","INHIBITION"),("Catalysis","catalyst","ACTIVATION"),("TemplateReactionRegulation","positiveregulator","ACTIVATION")):
+        need(control_role({"class":cl,"control_type":json.dumps([v])})==z,"control role fixture")
+    for value in ('"ACTIVATION"','[]','["ACTIVATION","INHIBITION"]','["UNKNOWN"]'):
+        try:control_role({"class":"Control","control_type":value})
+        except RuntimeError:pass
+        else:raise RuntimeError("invalid control type accepted")
+    emit("CONTROL_PARSER_SELF_TEST_PASS")
 def main():
+    ap=argparse.ArgumentParser()
+    ap.add_argument("--control-preflight",action="store_true")
+    ap.add_argument("--self-test",action="store_true")
+    a=ap.parse_args()
+    if a.self_test:self_test();return
     check_manifest(TYPED,"P1A04F_v1");check_manifest(STATE,"P1A04H_v1")
     ops={x["rdf_id"]:x for x in rows(TYPED/"biopax_operations.tsv")}
     states={x["rdf_id"]:x for x in rows(STATE/"biopax_states.tsv")}
     need(len(ops)==16187 and len(states)==61418,"BP inventory")
     progress("BP_CATALOGUE_LOADED",len(ops),len(states))
+    direct_roles=load_direct_controls(set(ops))
+    if a.control_preflight:
+        emit("P1A04T_V2_CONTROL_PREFLIGHT_COMPLETE; NO_SBML_REPARSE")
+        return
     stable,internal=bp_index()
     progress("BP_EVENT_AND_STATE_INDEX_PREPARATION_START")
     # Confirm that direct stable xrefs identify the same operation catalogue.
@@ -105,14 +159,8 @@ def main():
         if x["coefficient_status"]=="explicit_owner_coefficient":
             vals=json.loads(x["owner_stoichiometry_json"]);need(len(vals)==1,"BP coefficient schema")
             coeff[e,role,s]=Decimal(vals[0][1])
-    controls={x["rdf_id"]:x for x in rows(TYPED/"biopax_control_records.tsv")}
-    ctr=defaultdict(set);target=defaultdict(set)
-    for x in rows(TYPED/"biopax_incidence.tsv"):
-        if x["layer"]=="controller_of_record":ctr[x["target_id"]].add(x["source_id"])
-        elif x["layer"]=="controlled_by_record":target[x["source_id"]].add(x["target_id"])
-    for c,x in controls.items():
-        role="catalyst" if x["class"]=="Catalysis" else "positiveregulator" if x["control_type"]=="ACTIVATION" else "negativeregulator" if x["control_type"]=="INHIBITION" else "other_modifier"
-        for e in target[c]&allowed_events:part[e][role].update(ctr[c])
+    for e,roles in direct_roles.items():
+        for z,entities in roles.items():part[e][z].update(entities)
     # Aggregate repeated pathway appearances separately, and compare distinct
     # event signatures only once. Do not treat export repetitions as evidence.
     counts=Counter();maps=Counter();species_maps=Counter();sb_roles=Counter();examples=defaultdict(list)
@@ -206,5 +254,5 @@ def main():
     emit("SBML_BP_ONLY_BY_CLASS",dict(Counter(ops[e]["class"] for e in allowed_events-mapped.keys())))
     emit("SBML_BP_ONLY_EXAMPLES",[(ops[e]["stable_id"],ops[e]["name"]) for e in sorted(allowed_events-mapped.keys())[:15]])
     for k,v in sorted(examples.items()):emit("REVIEW_EXAMPLES",k,v)
-    progress("P1A04T_FULL_SBML_EXPORT_COMPARISON_COMPLETE; NO_MERGES; REVIEW_DISCREPANCIES")
+    progress("P1A04T_V2_FULL_SBML_EXPORT_COMPARISON_COMPLETE; NO_MERGES; REVIEW_DISCREPANCIES")
 if __name__=="__main__":main()

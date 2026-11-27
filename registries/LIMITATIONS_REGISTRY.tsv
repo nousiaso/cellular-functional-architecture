@@ -19,3 +19,4 @@ L017	P1A	Chemical identifiers and ontology classes may describe different proton
 L018	P1A	GO molecular participants have sparse direct location annotation and identity coverage differs from enablers	Audit exact participant identities and location correspondence; keep context uncertainty rather than impute	OPEN
 L019	P1A	Chemical external xrefs may be sparse or ambiguous and structural descriptions may be generic	Retain source-specific identity; candidate-only crossrefs and strict versus expanded connectivity sensitivity	OPEN
 L020	P1A	Protein-to-gene ambiguity and unspecified complex membership can inflate gene counts or misrepresent required components	Keep candidate sets and molecular units separate; later gene mapping sensitivity and missing-component flags	OPEN
+L021	P1A	V1 regulatory comparison used incorrect serialized control-type comparisons	V2 parser fixture tests and full cross-format rerun required; preserve v1 core results and historical log	OPEN
