@@ -1,6 +1,6 @@
 {
   "protocol_version": "0.3.0",
-  "status": "P1A_FROZEN_P1B_IN_PROGRESS_REVISED_DIRECTION_APPROVED",
+  "status": "P1A_FROZEN_P1B_TECHNICAL_PASS_REVIEW_REQUIRED",
   "species_taxon": 9606,
   "biological_scope": [
     "macrophages",
@@ -47,5 +47,11 @@
     "v98_exposure": "aggregate_diagnostics_already_inspected",
     "historical_releases": null
   },
-  "confirmatory_design_status": "NOT_FROZEN"
+  "confirmatory_design_status": "NOT_FROZEN",
+  "harmonization_certificate": {
+    "status": "TECHNICAL_PASS_REVIEW_REQUIRED",
+    "execution_commit": "b38424ee4a0aacaf9494be16aa6af72d11bff181",
+    "manifest_path": "results/P1B04_HARMONIZATION_CERTIFICATE_V1/manifest.json",
+    "manifest_sha256": "82fc4ac1213edcfe4ea68c6b447870ea5e2027da9379f9276b52ef1be1bf6c7a"
+  }
 }
