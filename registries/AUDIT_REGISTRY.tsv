@@ -34,3 +34,4 @@ A098	2026-11-28	P1D.04	Initial interactive diagnostic timed out; direct Python s
 A099	2026-11-28	P1D.04	Patch verified property types and direct project-only execution; package receipt after successful larger planted synthetic test; execution pending	PENDING
 A100	2026-11-28	P1D.04	User reported planted synthetic PASS; 2 operation and 2 state blocks each purity 1; DL 16779.133 to 14548.424; explicit receipt d6c476b68def958d8140d901ab896119630b9a00b401600f1a98b350d9d7eacc	BACKEND_PASS
 A101	2026-11-28	P1D.05	Full-scale finite-sweep N2/N3 randomized role workloads and separate fixed-composition workload prepared; no observed fit or saved partitions	PENDING
+A102	2026-11-28	P1D.05	User reported all workloads executed with type separation but fitted DL exceeded type-only baseline by 19-25 fold; computational scale pass, optimization gate failed; read-only objective/initialization audit required	OPTIMIZATION_FAIL
