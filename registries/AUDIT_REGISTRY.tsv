@@ -19,3 +19,5 @@ A083	2026-11-27	P1B.04	User reported technical PASS; 464032 assertion endpoints;
 A084	2026-11-27	P1B.04	Explicit user approval to freeze Part 1B and proceed to 1C; certificate and preceding manifests pinned in P1B_HARMONIZATION_LOCK_V1.json	FROZEN_APPROVED
 A085	2026-11-27	P1C.01	Native typed incidence and exact-state comparison projections implemented under unchanged v0.3.0 design; execution pending	PENDING
 A086	2026-11-27	P1C.01	User reported PASS; all 16187 operations native incident; exact flow 339542 distinct directed nonself pairs and 345409 witness occurrences; five separate comparison layers; manifest c19922ead412401c862b11faad63a4b9c1de7cc683e2d91c8695ac753938b09c	PASS
+A087	2026-11-27	P1C.02	User reported preflight: 8098 exact shared states including 12 self-only; OR all 22890 and supported 22352 occurrence upper bounds; AND 41003 exact location and 27304 different; context upper bound 115947160	FEASIBILITY_PASS
+A088	2026-11-27	P1C.02	Deduplicated OR/direct AND candidates and factored context implemented; execution pending	PENDING
