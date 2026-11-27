@@ -57,3 +57,4 @@ A054	2026-11-27	P1A.04R	User reported 45/45 active participant tokens resolved; 
 A055	2026-11-27	P1A.04S	Consolidated residual identity and SBML schema preflight prepared; execution pending	PENDING
 A056	2026-11-27	P1A.04S	User reported reconstruction PASS; 43/44 concordant human HGNC, 11682 BP human references audited; 65 complex activities lack recorded parts; 2889 SBML files sampled	REMAINING_IDENTITY_FORMAT_PREFLIGHT_PASS
 A057	2026-11-27	P1A.04T	Full SBML export comparison prepared; execution pending	PENDING
+A058	2026-11-27	P1A.04T	User reported run ongoing after F/H manifest checks; stage timing and memory logging added; reusable SLURM batch wrapper prepared; execution and resource profiling pending	RUNNING_NOT_CERTIFIED

@@ -7,6 +7,8 @@ from pathlib import Path
 import re
 import sqlite3
 import tarfile
+import time
+import resource
 import xml.etree.ElementTree as ET
 from p1a04s_remaining_identity_and_format_preflight import core,ROOT,STATE,DB,rows,sha,need
 from p1a04k_scope_feasibility_audit import TYPED,check_manifest
@@ -17,7 +19,10 @@ B="{http://biomodels.net/biology-qualifiers/}"
 STABLE=re.compile(r"R-[A-Z]+-[0-9]+")
 RELEASE_NS="Reactome Database ID Release 98"
 STAGING_HASH="9fc75c327a76de4ceb82c9095e9f5c82e34c6a202b1468f0836a53a498cdd63b"
+START=time.monotonic()
 def emit(*x):print(*x,flush=True)
+def progress(*x):
+    emit(*x,"ELAPSED_S",round(time.monotonic()-START,2),"PEAK_RSS_MIB",round(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024,1))
 def numeric(s,prefix):
     m=re.fullmatch(prefix+r"_([0-9]+)",s or "")
     return m.group(1) if m else None
@@ -37,18 +42,27 @@ def annotations(x):
                 if m:out.add(m.group(1))
     return out
 def bp_index():
+    progress("STAGING_DB_REHASH_START",DB.stat().st_size)
     need(sha(DB)==STAGING_HASH,"staged DB hash mismatch")
+    progress("STAGING_DB_REHASH_PASS")
     db=sqlite3.connect(DB.as_uri()+"?mode=ro",uri=True);db.execute("PRAGMA query_only=ON")
     need(dict(db.execute("SELECT key,value FROM metadata")).get("schema_version")=="P1A04C_v1","staged schema")
+    progress("BP_RECORD_INDEX_START")
     records={o:(i,c.rsplit("}",1)[-1]) for o,i,c in db.execute("SELECT ordinal,rdf_id,class_uri FROM bp_record")}
+    progress("BP_RECORD_INDEX_COMPLETE",len(records))
     xp=defaultdict(lambda:defaultdict(set));links=defaultdict(set)
-    for o,k,t,v in db.execute("SELECT record_ordinal,predicate_uri,target_local_id,literal_text FROM bp_property"):
+    progress("BP_PROPERTY_SCAN_START")
+    for i,(o,k,t,v) in enumerate(db.execute("SELECT record_ordinal,predicate_uri,target_local_id,literal_text FROM bp_property"),1):
+        if i%250000==0:progress("BP_PROPERTY_SCAN_PROGRESS",i)
         k=k.rsplit("}",1)[-1]
         if records[o][1]=="UnificationXref" and k in ("db","id") and v is not None:xp[records[o][0]][k].add(v)
         elif k=="xref" and t is not None:links[records[o][0]].add(t)
     db.close()
+    progress("BP_PROPERTY_SCAN_COMPLETE",i)
     stable=defaultdict(set);internal=defaultdict(set);ns=Counter();examples=defaultdict(list)
-    for o,targets in links.items():
+    progress("BP_XREF_INDEX_START",len(links))
+    for j,(o,targets) in enumerate(links.items(),1):
+        if j%50000==0:progress("BP_XREF_INDEX_PROGRESS",j)
         for t in targets:
             for n in xp[t]["db"]:
                 if n not in ("Reactome",RELEASE_NS):continue
@@ -59,6 +73,7 @@ def bp_index():
                     if n==RELEASE_NS and re.fullmatch(r"[0-9]+",ident):internal[ident].add(o)
     emit("BP_DIRECT_XREF_NAMESPACES",dict(ns),"EXAMPLES",dict(examples))
     emit("BP_DIRECT_XREF_KEYS",len(stable),len(internal))
+    progress("BP_XREF_INDEX_COMPLETE",len(stable),len(internal))
     return stable,internal
 def resolve(ids,num,stable,internal,allowed):
     st=set().union(*(stable.get(x,set()) for x in ids))&allowed
@@ -74,7 +89,9 @@ def main():
     ops={x["rdf_id"]:x for x in rows(TYPED/"biopax_operations.tsv")}
     states={x["rdf_id"]:x for x in rows(STATE/"biopax_states.tsv")}
     need(len(ops)==16187 and len(states)==61418,"BP inventory")
+    progress("BP_CATALOGUE_LOADED",len(ops),len(states))
     stable,internal=bp_index()
+    progress("BP_EVENT_AND_STATE_INDEX_PREPARATION_START")
     # Confirm that direct stable xrefs identify the same operation catalogue.
     need(all(stable.get(x["stable_id"],set())&ops.keys()=={e} for e,x in ops.items()),"BP event stable index")
     allowed_events=set(ops);allowed_states=set(states)
@@ -112,7 +129,11 @@ def main():
         hit=st_hits&it_hits if st_hits and it_hits else st_hits or it_hits
         if len(hit)==1:return next(iter(hit)),"direct_stable" if st_hits else "release_numeric_candidate"
         return None,"ambiguous" if hit else "unmapped"
+    progress("BP_ROLE_INDEX_COMPLETE",len(part),len(coeff))
+    progress("SBML_ARCHIVE_REHASH_START")
     path=core("R03")
+    progress("SBML_ARCHIVE_REHASH_PASS")
+    progress("SBML_PARSE_START")
     with tarfile.open(path,"r|gz") as tf:
         for m in tf:
             if not m.isfile():continue
@@ -171,7 +192,7 @@ def main():
                                 if ck=="different_explicit":example("coefficient_difference",ops[e]["stable_id"],z,bid,v,str(coeff[e,z,bid]))
                     comparison[(cl,z,tag)]+=1;comparison_events[(cl,z,tag)].add(e)
                 comparison[(cl,"reversible",str(x.get("reversible")))]+=1
-            if counts["files"]%250==0:emit("SBML_PROGRESS",counts["files"],counts["reaction_occurrences"])
+            if counts["files"]==1 or counts["files"]%50==0:progress("SBML_PROGRESS",counts["files"],counts["reaction_occurrences"])
     need(counts["files"]==2889,"SBML archive file count")
     emit("SBML_TOTALS",dict(counts),"UNIQUE_REACTION_KEYS",len(seen))
     emit("SBML_REACTION_MAPPING_OCCURRENCES",dict(maps))
@@ -185,5 +206,5 @@ def main():
     emit("SBML_BP_ONLY_BY_CLASS",dict(Counter(ops[e]["class"] for e in allowed_events-mapped.keys())))
     emit("SBML_BP_ONLY_EXAMPLES",[(ops[e]["stable_id"],ops[e]["name"]) for e in sorted(allowed_events-mapped.keys())[:15]])
     for k,v in sorted(examples.items()):emit("REVIEW_EXAMPLES",k,v)
-    emit("P1A04T_FULL_SBML_EXPORT_COMPARISON_COMPLETE; NO_MERGES; REVIEW_DISCREPANCIES")
+    progress("P1A04T_FULL_SBML_EXPORT_COMPARISON_COMPLETE; NO_MERGES; REVIEW_DISCREPANCIES")
 if __name__=="__main__":main()
