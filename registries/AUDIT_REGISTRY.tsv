@@ -39,3 +39,5 @@ A103	2026-11-28	P1D.05	User reported explicit/default initial scores identical; 
 A104	2026-11-28	P1D.05	Read-only audit of nominal/occupied blocks, exact partition and input invariance, entropy terms, and fresh reconstruction prepared	PENDING
 A105	2026-11-28	P1D.05	Entropy audit reproduced unchanged exact partition/graph and nominal B=2; partition contribution rose 19.8968 to 29126.7546, other tested terms unchanged; internal block graph 2 to 4; B kwarg ignored	PARTITION_DL_INCONSISTENCY
 A106	2026-11-28	P1D.05	Bounded equivalent-constructor and update-method consistency recovery gate prepared; no model change or observed fit	PENDING
+A107	2026-11-28	P1D.05	Recovery run: all three equivalent single-vertex constructors pass 12 checks each, 176535 reported moves and six nonzero deltas per constructor; all multiflip variants fail first sweep identically	SINGLE_VERTEX_CANDIDATE_PASS
+A108	2026-11-28	P1D.05	Bounded single-vertex multistart full-objective search on dense and sparser planted examples and finite-sweep N2/N3 workloads prepared; baseline retained, per-sweep reconstructed objective audit	PENDING
