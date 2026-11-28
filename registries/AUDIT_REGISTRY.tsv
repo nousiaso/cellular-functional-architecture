@@ -41,3 +41,5 @@ A105	2026-11-28	P1D.05	Entropy audit reproduced unchanged exact partition/graph 
 A106	2026-11-28	P1D.05	Bounded equivalent-constructor and update-method consistency recovery gate prepared; no model change or observed fit	PENDING
 A107	2026-11-28	P1D.05	Recovery run: all three equivalent single-vertex constructors pass 12 checks each, 176535 reported moves and six nonzero deltas per constructor; all multiflip variants fail first sweep identically	SINGLE_VERTEX_CANDIDATE_PASS
 A108	2026-11-28	P1D.05	Bounded single-vertex multistart full-objective search on dense and sparser planted examples and finite-sweep N2/N3 workloads prepared; baseline retained, per-sweep reconstructed objective audit	PENDING
+A109	2026-11-28	P1D.05	User reported 900 checks pass; dense ARI 1/1; sparser best DL 41262.313 vs planted 39083.057; all workloads completed; search quality unresolved	CONSISTENCY_PASS_SEARCH_INCOMPLETE
+A110	2026-11-28	P1D.05	Synthetic-only role-separated spectral and exact/perturbed oracle initialization diagnostic prepared; unchanged full objective, greedy and annealing comparisons	PENDING
