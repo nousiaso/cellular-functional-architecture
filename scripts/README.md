@@ -7,3 +7,4 @@ Retained acquisition and staging scripts reconstruct source records and derived 
 No additional inference scripts until the preceding stage passes. Keep code, manifests and concise documentation in Git; raw data, outputs and logs local.
 
 P1D.05 scale workload executed but objective gate failed. `diagnostics/p1d05_entropy_audit.py` is a focused read-only follow-up using the same N2 randomized role workload; dedicated CFA_PYTHON, 1 CPU, 4 GiB, 10 min provisional. Stop at first reproduced score discrepancy; no observed fit or saved memberships.
+`diagnostics/p1d05_entropy_audit.py` confirmed partition-DL inconsistency. Next bounded `diagnostics/p1d05_update_recovery.py` with same dedicated Python, 1 CPU, 4 GiB, 15 min provisional. Equivalent full-objective constructors and single/multiflip consistency checks only; no observed fit or saved membership.
