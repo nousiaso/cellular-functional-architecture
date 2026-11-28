@@ -43,3 +43,5 @@ A107	2026-11-28	P1D.05	Recovery run: all three equivalent single-vertex construc
 A108	2026-11-28	P1D.05	Bounded single-vertex multistart full-objective search on dense and sparser planted examples and finite-sweep N2/N3 workloads prepared; baseline retained, per-sweep reconstructed objective audit	PENDING
 A109	2026-11-28	P1D.05	User reported 900 checks pass; dense ARI 1/1; sparser best DL 41262.313 vs planted 39083.057; all workloads completed; search quality unresolved	CONSISTENCY_PASS_SEARCH_INCOMPLETE
 A110	2026-11-28	P1D.05	Synthetic-only role-separated spectral and exact/perturbed oracle initialization diagnostic prepared; unchanged full objective, greedy and annealing comparisons	PENDING
+A111	2026-11-28	P1D.05	User reported 720 checks pass; spectral sparse start ARI .99333/1, greedy and anneal recover exact; 25 percent oracle flips sparse greedy 2/2 anneal 0/2; known count only	INITIALIZATION_FEASIBILITY_PASS
+A112	2026-11-28	P1D.05	Synthetic unknown-block-count grid and sparse implicit role Gram benchmark prepared; no observed inference	PENDING

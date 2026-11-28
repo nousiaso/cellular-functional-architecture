@@ -1,6 +1,6 @@
 {
   "protocol_version": "0.3.0",
-  "status": "P1A_FROZEN_P1B_FROZEN_P1C_PASS_P1D05_SEARCH_INCOMPLETE",
+  "status": "P1A_FROZEN_P1B_FROZEN_P1C_PASS_P1D05_INITIALIZATION_FEASIBILITY_PASS",
   "species_taxon": 9606,
   "biological_scope": [
     "macrophages",
